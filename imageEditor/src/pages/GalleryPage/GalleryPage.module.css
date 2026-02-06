@@ -1,0 +1,154 @@
+.galleryPageContainer {
+  display: flex;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+}
+
+.galleryMain {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.GridDisplayTypesContainer {
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  width: 200px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.gridDisplayTypeTitle {
+  text-align: center;
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.gridTypeBtn,
+.gridSizeBtn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 12px;
+  width: 100%;
+  border: none;
+  background: white;
+  border-bottom: 1px solid #e5e5e5;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.15s ease;
+}
+
+.gridTypeBtn:hover,
+.gridSizeBtn:hover {
+  background: #f0f0f0;
+}
+
+.gridTypeBtn:last-of-type,
+.gridSizeBtn:last-of-type {
+  border-bottom: none;
+}
+
+.galleryContainer {
+  padding: 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+}
+
+/* SQUARE LAYOUT */
+.galleryContainer.square {
+  display: grid;
+  grid-gap: 16px;
+}
+
+/* Square Small */
+.galleryContainer.square.small {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-auto-rows: 180px;
+}
+
+/* Square Medium */
+.galleryContainer.square.medium {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-auto-rows: 260px;
+}
+
+/* Square Large */
+.galleryContainer.square.large {
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-auto-rows: 400px;
+}
+
+.galleryContainer.square img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.galleryContainer.square img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* RIVER LAYOUT */
+.galleryContainer.river {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* River Small */
+.galleryContainer.river.small img {
+  flex: 1 1 auto;
+  max-width: calc(25% - 12px);
+  min-width: 180px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* River Medium */
+.galleryContainer.river.medium img {
+  flex: 1 1 auto;
+  max-width: calc(33.333% - 11px);
+  min-width: 280px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* River Large */
+.galleryContainer.river.large img {
+  flex: 1 1 auto;
+  max-width: calc(50% - 8px);
+  min-width: 450px;
+  height: auto;
+  object-fit: contain;
+}
+
+.galleryContainer.river img {
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+  display: block;
+}
+
+.galleryContainer.river img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}

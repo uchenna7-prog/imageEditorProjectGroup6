@@ -1,0 +1,38 @@
+.sidebar {
+  background:white;
+  width: 300px;
+  height: 100vh;
+  border: 1px solid #ccc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebarHeader{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.menuBtn{
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.navBtn{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  gap:20px;
+  width: 100%;
+  border: none;
+  background: white;
+  border-bottom: 1px solid #ccc;
+}
+
+.navBtn:hover{
+  background-color: #e0e0e0;
+}

@@ -1,0 +1,51 @@
+.galleryHeader{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+  height: 80px;
+}
+
+.headerButtonsContainer{
+  display: flex;
+  gap: 20px;
+}
+
+.headerButton{
+    display: flex;
+    align-items: center;
+    border: none;
+    padding: 5px;
+    background: none;
+    cursor: pointer;
+}
+
+.headerButton:hover{
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.searchContainer{
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.searchContainer:focus-within{
+  border-color:black;
+
+}
+
+.searchInput{
+  border:none;
+  outline: none;
+  padding: 5px;
+  width: 200px;
+}
