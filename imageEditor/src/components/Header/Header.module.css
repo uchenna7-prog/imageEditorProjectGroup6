@@ -53,6 +53,7 @@
   color: var(--textColor);
 }
 
+
 .searchContainer {
   background-color: white;
   border: 1px solid #ccc;
@@ -82,6 +83,16 @@
   font-size: 0.95rem;
   background: transparent;
 }
+
+.active {
+  background-color: #e8f0fe;
+  border: 1px solid #1a73e8;
+}
+
+.active i {
+  color: #1a73e8;
+}
+
 
 /* Mobile Responsive */
 @media (max-width: 767px) {

@@ -5,7 +5,6 @@ export const GridDisplaySizesContext = createContext(null);
 export function GridDisplaySizesProvider({ children }) {
   const [showGridDisplaySizes, setShowGridDisplaySizes] = useState(false);
   const [viewType, setViewType] = useState("grid");
-  const [gridLayout, setGridLayout] = useState("square");
   const [gridSize, setGridSize] = useState("medium");
 
   const changeGridSize = (newGridSize) => {
@@ -19,9 +18,7 @@ export function GridDisplaySizesProvider({ children }) {
     if (newViewType === "grid") {
         setShowGridDisplaySizes(prev => !prev);
     } 
-    else {
-        setShowGridDisplaySizes(false);
-    }
+
   };
 
   const toggleGridDisplaySizes = () => {
@@ -35,7 +32,6 @@ export function GridDisplaySizesProvider({ children }) {
         toggleGridDisplaySizes,
         viewType,
         changeViewType,
-        gridLayout,
         gridSize,
         changeGridSize
       }}

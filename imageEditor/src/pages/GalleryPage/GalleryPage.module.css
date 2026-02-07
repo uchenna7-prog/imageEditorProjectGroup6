@@ -68,28 +68,52 @@
   flex: 1;
 }
 
-/* SQUARE GRID ONLY */
-.square {
+.listLayout{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+}
+
+.listLayout img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  
+}
+
+.listLayoutItem{
+  border-bottom: 1px solid #ccc;
+}
+
+.imageContainer:hover{
+  background: var(--btn-hover-bg);
+}
+
+
+.gridLayout{
   display: grid;
   gap: 16px;
 }
 
-.square.small {
+/* sizes */
+.small {
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   grid-auto-rows: 180px;
 }
 
-.square.medium {
+.medium {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   grid-auto-rows: 260px;
 }
 
-.square.large {
+.large {
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   grid-auto-rows: 400px;
 }
 
-.square img {
+
+ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -99,7 +123,7 @@
   cursor: pointer;
 }
 
-.square img:hover {
+ img:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -114,19 +138,19 @@
     padding: 16px;
   }
 
-  .square.small {
+  .small {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     grid-auto-rows: 120px;
     gap: 12px;
   }
 
-  .square.medium {
+  .medium {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-auto-rows: 150px;
     gap: 12px;
   }
 
-  .square.large {
+  .large {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-auto-rows: 200px;
     gap: 12px;
@@ -145,17 +169,17 @@
     padding: 20px;
   }
 
-  .square.small {
+  .small {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-auto-rows: 150px;
   }
 
-  .square.medium {
+  .medium {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     grid-auto-rows: 220px;
   }
 
-  .square.large {
+  .large {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-auto-rows: 300px;
   }
@@ -163,17 +187,17 @@
 
 /* Large screens */
 @media (min-width: 1400px) {
-  .square.small {
+  .small {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-auto-rows: 200px;
   }
 
-  .square.medium {
+  .medium {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     grid-auto-rows: 280px;
   }
 
-  .square.large {
+  .large {
     grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
     grid-auto-rows: 450px;
   }

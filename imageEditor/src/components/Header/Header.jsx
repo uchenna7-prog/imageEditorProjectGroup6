@@ -5,8 +5,7 @@ import { useTheme } from "../../contexts/ThemeContext";
 import { useSidebar } from "../../contexts/SidebarContext";
 
 function Header() {
-  const { showGridDisplaySizes, toggleGridDisplaySizes, viewType, changeViewType } =
-    useContext(GridDisplaySizesContext);
+  const { changeViewType, viewType } = useContext(GridDisplaySizesContext);
   const { theme, toggleTheme } = useTheme();
   const { toggleSidebar, isMobile } = useSidebar();
 
@@ -35,14 +34,18 @@ function Header() {
         </button>
 
         <button
-          className={styles.headerButton}
+          className={`${styles.headerButton} ${
+            viewType === "list" ? styles.active : ""
+          }`}
           onClick={() => changeViewType("list")}
         >
           <i className="material-icons">list</i>
         </button>
 
         <button
-          className={styles.headerButton}
+          className={`${styles.headerButton} ${
+            viewType === "grid" ? styles.active : ""
+          }`}
           onClick={() => changeViewType("grid")}
         >
           <i className="material-icons">grid_on</i>
@@ -50,6 +53,7 @@ function Header() {
             keyboard_arrow_down
           </i>
         </button>
+
       </div>
     </header>
   );

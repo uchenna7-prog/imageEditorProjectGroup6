@@ -15,6 +15,7 @@ import { useSidebar } from "../../contexts/SidebarContext";
 
 function GalleryPage() {
   const {
+    viewType,
     showGridDisplaySizes,
     gridSize,
     changeGridSize,
@@ -83,16 +84,33 @@ function GalleryPage() {
           </div>
         )}
 
-        <div
-          className={`${styles.galleryContainer} ${styles.square} ${styles[gridSize]}`}
-        >
-          <img src={img1} alt="Comp Sci Department" />
-          <img src={img2} alt="Senate Building" />
-          <img src={img3} alt="Tetfund 7 In One Building" />
-          <img src={img4} alt="Library Building" />
-          <img src={img5} alt="Ofirima Building" />
-          <img src={img6} alt="New Convocation Arena" />
-        </div>
+      <div
+        className={`${styles.galleryContainer} ${viewType === "grid" ? `${styles.gridLayout} ${styles[gridSize]}`: styles.listLayout}`}
+      >   
+          <div className={`${styles.imageContainer} ${viewType === "list" ? `${styles.listLayoutItem}`: styles.gridLayoutItem}`}>
+            <img src={img1} alt="Comp Sci Department" />
+          </div>
+
+          <div className={`${styles.imageContainer} ${viewType === "list" ? `${styles.listLayoutItem}`: styles.gridLayoutItem}`}>
+            <img src={img2} alt="Senate Building" />
+          </div>
+
+          <div className={`${styles.imageContainer} ${viewType === "list" ? `${styles.listLayoutItem}`: styles.gridLayoutItem}`}>
+            <img src={img3} alt="Tetfund 7 In One Building" />
+          </div>
+
+          <div className={`${styles.imageContainer} ${viewType === "list" ? `${styles.listLayoutItem}`: styles.gridLayoutItem}`}>
+            <img src={img4} alt="Library Building" />
+          </div>
+
+          <div className={`${styles.imageContainer} ${viewType === "list" ? `${styles.listLayoutItem}`: styles.gridLayoutItem}`}>
+            <img src={img5} alt="Ofirima Building" />
+          </div>  
+
+          <div className={`${styles.imageContainer} ${viewType === "list" ? `${styles.listLayoutItem}`: styles.gridLayoutItem}`}>
+            <img src={img6} alt="New Convocation Arena" />
+          </div>
+      </div>
       </main>
     </div>
   );
