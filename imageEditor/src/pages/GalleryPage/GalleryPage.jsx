@@ -8,6 +8,9 @@ import img3 from "../../assets/tetfund7InOneBuilding.jpg";
 import img4 from "../../assets/libraryBuilding.jpg";
 import img5 from "../../assets/ofirimaBuilding.jpg";
 import img6 from "../../assets/newConvocationArena.jpg";
+import img7 from "../../assets/facultyOfLawBuilding.jpg";
+import img8 from "../../assets/managementSciBuilding.jpg";
+import img9 from "../../assets/pharmacyBuilding.jpg";
 
 import { GridDisplaySizesContext } from "../../contexts/GridDisplaySizes";
 import { useContext } from "react";
@@ -20,6 +23,9 @@ const images = [
   { src: img4, name: "Library Building", size: "2.0 MB" },
   { src: img5, name: "Ofirima Building", size: "1.8 MB" },
   { src: img6, name: "New Convocation Arena", size: "3.5 MB" },
+  { src: img7, name: "Faculty of Law Building", size: "2.3 MB" },
+  { src: img8, name: "Management Sci Building", size: "1.9 MB" },
+  { src: img9, name: "Pharmacy Building", size: "2.7 MB" },
 ];
 
 function GalleryPage() {

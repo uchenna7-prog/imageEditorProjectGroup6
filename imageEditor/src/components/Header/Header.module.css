@@ -84,6 +84,10 @@
   background: transparent;
 }
 
+.searchInput::placeholder{
+  font-size: small;
+}
+
 .active {
   background-color: #e8f0fe;
   border: 1px solid #1a73e8;
@@ -107,9 +111,9 @@
 
   .searchContainer {
     max-width: none;
-    gap: 7px;
+    gap: 4px;
     padding: 6px 7px;
-    font-size: small;
+
   }
 
   .searchContainer i{
