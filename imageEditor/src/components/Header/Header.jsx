@@ -1,11 +1,13 @@
 import styles from "./Header.module.css"
 import { useContext } from "react";
-import { GridDisplayTypesContext } from "../../contexts/GridDisplayTypes"
+import { GridDisplaySizesContext } from "../../contexts/GridDisplaySizes"
+import { useTheme } from "../../contexts/ThemeContext";
 
 function Header() {
 
-  const {showGridDisplayTypes,toggleGridDisplayTypes,viewType,changeViewType} = useContext(GridDisplayTypesContext)
-
+  const {showGridDisplaySizes,toggleGridDisplaySizes,viewType,changeViewType} = useContext(GridDisplaySizesContext)
+  const {theme, toggleTheme} = useTheme()
+  
   return(
   <header className={styles.galleryHeader}>
 
@@ -18,8 +20,8 @@ function Header() {
 
     <div className={styles.headerButtonsContainer}>
 
-      <button className={styles.headerButton}>
-        <i className="material-icons">light_mode</i>
+      <button className={styles.headerButton} onClick={toggleTheme}>
+        <i className="material-icons">{theme === "light-mode" ? "dark_mode" : "light_mode"}</i>
       </button>
 
       <button className={styles.headerButton} onClick={() => changeViewType("list")}>

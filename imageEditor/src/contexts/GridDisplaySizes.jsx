@@ -1,9 +1,9 @@
 import { createContext, useState } from "react";
 
-export const GridDisplayTypesContext = createContext(null);
+export const GridDisplaySizesContext = createContext(null);
 
-export function GridDisplayTypesProvider({ children }) {
-  const [showGridDisplayTypes, setShowGridDisplayTypes] = useState(false);
+export function GridDisplaySizesProvider({ children }) {
+  const [showGridDisplaySizes, setShowGridDisplaySizes] = useState(false);
   const [viewType, setViewType] = useState("grid");
   const [gridLayout, setGridLayout] = useState("square");
   const [gridSize, setGridSize] = useState("medium");
@@ -20,32 +20,30 @@ export function GridDisplayTypesProvider({ children }) {
     setViewType(newViewType);
 
     if (newViewType === "grid") {
-        setShowGridDisplayTypes(prev => !prev);
+        setShowGridDisplaySizes(prev => !prev);
     } 
     else {
-        setShowGridDisplayTypes(false);
+        setShowGridDisplaySizes(false);
     }
   };
 
-
-  const toggleGridDisplayTypes = () => {
-    setShowGridDisplayTypes(prev => !prev);
+  const toggleGridDisplaySizes = () => {
+    setShowGridDisplaySizes(prev => !prev);
   };
 
   return (
-    <GridDisplayTypesContext.Provider
+    <GridDisplaySizesContext.Provider
       value={{
-        showGridDisplayTypes,
-        toggleGridDisplayTypes,
+        showGridDisplaySizes,
+        toggleGridDisplaySizes,
         viewType,
         changeViewType,
         gridLayout,
-        changeGridLayout,
         gridSize,
         changeGridSize
       }}
     >
       {children}
-    </GridDisplayTypesContext.Provider>
+    </GridDisplaySizesContext.Provider>
   );
 }

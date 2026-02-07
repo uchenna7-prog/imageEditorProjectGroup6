@@ -19,10 +19,11 @@
     padding: 5px;
     background: none;
     cursor: pointer;
+    background: var(--btn-bg);
 }
 
 .headerButton:hover{
-  background-color: #f0f0f0;
+  background-color: var(--btn-hover-bg);
   border-radius: 5px;
   border: 1px solid #ccc;
 }

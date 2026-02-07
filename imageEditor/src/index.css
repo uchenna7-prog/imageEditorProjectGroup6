@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg:#ffffff;
+  --textColor:#111827;
+  --btn-bg:transparent;
+  --btn-hover-bg:#f3f4f6;
+
+}
+
+:root[data-theme="dark-mode"] {
+    --bg: #0b0f14;
+    --textColor:#f9fafb;
+    --btn-bg:transparent;
+    --btn-hover-bg:#1f2937;
+
+}
+
+.material-icons{
+    color: var(--textColor);
+}

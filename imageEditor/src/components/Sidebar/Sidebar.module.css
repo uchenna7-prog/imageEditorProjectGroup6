@@ -1,5 +1,6 @@
 .sidebar {
-  background:white;
+  background: var(--bg);
+  color: var(--textColor);
   width: 300px;
   height: 100vh;
   border: 1px solid #ccc;
@@ -29,10 +30,12 @@
   gap:20px;
   width: 100%;
   border: none;
-  background: white;
+  background: var(--bg);
   border-bottom: 1px solid #ccc;
+  color: var(--textColor);
+  background: var(--btn-bg);
 }
 
 .navBtn:hover{
-  background-color: #e0e0e0;
+  background-color: var(--btn-hover-bg);
 }
