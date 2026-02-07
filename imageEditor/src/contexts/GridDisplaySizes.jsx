@@ -16,8 +16,11 @@ export function GridDisplaySizesProvider({ children }) {
     setViewType(newViewType);
 
     if (newViewType === "grid") {
-        setShowGridDisplaySizes(prev => !prev);
+      setShowGridDisplaySizes(true);
     } 
+    else {
+      setShowGridDisplaySizes(false);
+    }   
 
   };
 
