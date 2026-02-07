@@ -13,7 +13,7 @@ function Sidebar(){
                 </button>
 
                 <div className={styles.sidebarTitle}>
-                    <h2>IMAGE EDITOR</h2>
+                    <h2>IMAGE GALLERY</h2>
                 </div>
 
             </header>
