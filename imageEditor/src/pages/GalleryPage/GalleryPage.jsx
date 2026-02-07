@@ -13,104 +13,87 @@ import { GridDisplaySizesContext } from "../../contexts/GridDisplaySizes";
 import { useContext } from "react";
 import { useSidebar } from "../../contexts/SidebarContext";
 
-function GalleryPage() {
-  const {
-    viewType,
-    showGridDisplaySizes,
-    gridSize,
-    changeGridSize,
-  } = useContext(GridDisplaySizesContext);
+const images = [
+  { src: img1, name: "Comp Sci Department", size: "1.2 MB" },
+  { src: img2, name: "Senate Building", size: "2.5 MB" },
+  { src: img3, name: "Tetfund 7 In One Building", size: "3.1 MB" },
+  { src: img4, name: "Library Building", size: "2.0 MB" },
+  { src: img5, name: "Ofirima Building", size: "1.8 MB" },
+  { src: img6, name: "New Convocation Arena", size: "3.5 MB" },
+];
 
+function GalleryPage() {
+  const { viewType, showGridDisplaySizes, gridSize, changeGridSize } = useContext(GridDisplaySizesContext);
   const { isCollapsed, isMobile } = useSidebar();
 
   return (
     <div className={styles.galleryPageContainer}>
       <Sidebar />
 
-      <main
-        className={`${styles.galleryMain} ${
-          isCollapsed && !isMobile ? styles.mainExpanded : ""
-        }`}
-      >
+      <main className={`${styles.galleryMain} ${isCollapsed && !isMobile ? styles.mainExpanded : ""}`}>
         <Header />
 
         {showGridDisplaySizes && (
           <div className={styles.gridDisplaySizesContainer}>
             <div className={styles.gridDisplaySizeTitle}>SIZES</div>
-
             <button
               className={styles.gridSizeBtn}
               onClick={() => changeGridSize("small")}
-              style={{
-                background:
-                  gridSize === "small" ? "var(--btn-hover-bg)" : "var(--bg)",
-              }}
+              style={{ background: gridSize === "small" ? "var(--btn-hover-bg)" : "var(--bg)" }}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 -960 960 960"
-                width="24px"
-                fill="var(--textColor)"
-              >
-                <path d="M200-200h80v-80h-80v80Zm160 0h80v-80h-80v80Zm160 0h80v-80h-80v80Zm160 0h80v-80h-80v80ZM200-680h80v-80h-80v80Zm0 160h80v-80h-80v80Zm0 160h80v-80h-80v80Zm160-320h80v-80h-80v80Zm0 160h80v-80h-80v80Zm0 160h80v-80h-80v80Zm160-320h80v-80h-80v80Zm0 160h80v-80h-80v80Zm0 160h80v-80h-80v80Zm160-320h80v-80h-80v80Zm0 160h80v-80h-80v80Zm0 160h80v-80h-80v80ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Z" />
-              </svg>
-              Small
+              <i className="material-icons">window</i> Small
             </button>
-
             <button
               className={styles.gridSizeBtn}
               onClick={() => changeGridSize("medium")}
-              style={{
-                background:
-                  gridSize === "medium" ? "var(--btn-hover-bg)" : "var(--bg)",
-              }}
+              style={{ background: gridSize === "medium" ? "var(--btn-hover-bg)" : "var(--bg)" }}
             >
-              <i className="material-icons">window</i>
-              Medium
+              <i className="material-icons">window</i> Medium
             </button>
-
             <button
               className={styles.gridSizeBtn}
               onClick={() => changeGridSize("large")}
-              style={{
-                background:
-                  gridSize === "large" ? "var(--btn-hover-bg)" : "var(--bg)",
-              }}
+              style={{ background: gridSize === "large" ? "var(--btn-hover-bg)" : "var(--bg)" }}
             >
-              <i className="material-icons">crop_square</i>
-              Large
+              <i className="material-icons">crop_square</i> Large
             </button>
           </div>
         )}
 
-      <div
-        className={`${styles.galleryContainer} ${viewType === "grid" ? `${styles.gridLayout} ${styles[gridSize]}`: styles.listLayout}`}
-      >   
-          <div className={`${styles.imageContainer} ${viewType === "list" ? `${styles.listLayoutItem}`: styles.gridLayoutItem}`}>
-            <img src={img1} alt="Comp Sci Department" />
-          </div>
-
-          <div className={`${styles.imageContainer} ${viewType === "list" ? `${styles.listLayoutItem}`: styles.gridLayoutItem}`}>
-            <img src={img2} alt="Senate Building" />
-          </div>
-
-          <div className={`${styles.imageContainer} ${viewType === "list" ? `${styles.listLayoutItem}`: styles.gridLayoutItem}`}>
-            <img src={img3} alt="Tetfund 7 In One Building" />
-          </div>
-
-          <div className={`${styles.imageContainer} ${viewType === "list" ? `${styles.listLayoutItem}`: styles.gridLayoutItem}`}>
-            <img src={img4} alt="Library Building" />
-          </div>
-
-          <div className={`${styles.imageContainer} ${viewType === "list" ? `${styles.listLayoutItem}`: styles.gridLayoutItem}`}>
-            <img src={img5} alt="Ofirima Building" />
-          </div>  
-
-          <div className={`${styles.imageContainer} ${viewType === "list" ? `${styles.listLayoutItem}`: styles.gridLayoutItem}`}>
-            <img src={img6} alt="New Convocation Arena" />
-          </div>
-      </div>
+        <div
+          className={`${styles.galleryContainer} ${
+            viewType === "grid" ? `${styles.gridLayout} ${styles[gridSize]}` : styles.listLayout
+          }`}
+        >
+          {images.map((img, idx) => (
+            <div
+              key={idx}
+              className={`${styles.imageContainer} ${
+                viewType === "list" ? styles.listLayoutItem : styles.gridLayoutItem
+              }`}
+            >
+              {viewType === "list" ? (
+                <div className={styles.listItemContent}>
+                  <img src={img.src} alt={img.name} />
+                  <div className={styles.fileInfo}>
+                    <div className={styles.fileName}>{img.name}</div>
+                    <div className={styles.fileSize}>{img.size}</div>
+                  </div>
+                  <div className={styles.fileActions}>
+                    <button className={styles.actionBtn}>
+                      <i className="material-icons">edit</i>
+                    </button>
+                    <button className={styles.actionBtn}>
+                      <i className="material-icons">delete</i>
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <img src={img.src} alt={img.name} />
+              )}
+            </div>
+          ))}
+        </div>
       </main>
     </div>
   );

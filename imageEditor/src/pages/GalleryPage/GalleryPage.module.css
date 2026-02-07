@@ -202,3 +202,159 @@
     grid-auto-rows: 450px;
   }
 }
+
+
+/* -------------------- Gallery Page -------------------- */
+.galleryPageContainer {
+  display: flex;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  background: var(--bg);
+  color: var(--textColor);
+  overflow: hidden;
+}
+
+.galleryMain {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: margin-left 0.3s ease;
+}
+
+.mainExpanded {
+  margin-left: 0;
+}
+
+.galleryContainer {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* -------------------- Grid Layout -------------------- */
+.gridLayout {
+  display: grid;
+  gap: 16px;
+}
+
+.gridLayout img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.gridLayout img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* -------------------- List Layout -------------------- */
+.listLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.listLayoutItem {
+  display: flex;
+  padding: 12px;
+  align-items: center;
+  background: var(--bg-alt);
+  border-radius: 8px;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+.listLayoutItem:hover {
+  background: var(--btn-hover-bg);
+}
+
+.listItemContent {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+}
+
+.listLayoutItem img {
+  width: 80px;
+  height: 80px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.fileInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fileName {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--textColor);
+}
+
+.fileSize {
+  font-size: 0.8rem;
+  color: var(--textColor-light);
+}
+
+.fileActions {
+  display: flex;
+  gap: 8px;
+}
+
+.actionBtn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--textColor);
+  font-size: 1.2rem;
+  transition: color 0.2s ease;
+}
+
+.actionBtn:hover {
+  color: var(--primaryColor);
+}
+
+/* -------------------- Responsive -------------------- */
+@media (max-width: 767px) {
+  .galleryContainer {
+    padding: 16px;
+  }
+  .listLayoutItem img {
+    width: 60px;
+    height: 60px;
+  }
+  .fileName {
+    font-size: 0.85rem;
+  }
+  .fileSize {
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .galleryContainer {
+    padding: 20px;
+  }
+  .listLayoutItem img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .listLayoutItem img {
+    width: 100px;
+    height: 100px;
+  }
+}
