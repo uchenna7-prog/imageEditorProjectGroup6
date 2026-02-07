@@ -11,6 +11,7 @@ import img6 from "../../assets/newConvocationArena.jpg";
 
 import { GridDisplaySizesContext } from "../../contexts/GridDisplaySizes";
 import { useContext } from "react";
+import { useSidebar } from "../../contexts/SidebarContext";
 
 function GalleryPage() {
   const {
@@ -19,11 +20,17 @@ function GalleryPage() {
     changeGridSize,
   } = useContext(GridDisplaySizesContext);
 
+  const { isCollapsed, isMobile } = useSidebar();
+
   return (
     <div className={styles.galleryPageContainer}>
       <Sidebar />
 
-      <main className={styles.galleryMain}>
+      <main
+        className={`${styles.galleryMain} ${
+          isCollapsed && !isMobile ? styles.mainExpanded : ""
+        }`}
+      >
         <Header />
 
         {showGridDisplaySizes && (
@@ -33,7 +40,10 @@ function GalleryPage() {
             <button
               className={styles.gridSizeBtn}
               onClick={() => changeGridSize("small")}
-              style={{ background: gridSize === "small" ? "var(--btn-hover-bg)" : "var(--bg)" }}
+              style={{
+                background:
+                  gridSize === "small" ? "var(--btn-hover-bg)" : "var(--bg)",
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +60,10 @@ function GalleryPage() {
             <button
               className={styles.gridSizeBtn}
               onClick={() => changeGridSize("medium")}
-              style={{ background: gridSize === "medium" ? "var(--btn-hover-bg)" : "var(--bg)"}}
+              style={{
+                background:
+                  gridSize === "medium" ? "var(--btn-hover-bg)" : "var(--bg)",
+              }}
             >
               <i className="material-icons">window</i>
               Medium
@@ -59,7 +72,10 @@ function GalleryPage() {
             <button
               className={styles.gridSizeBtn}
               onClick={() => changeGridSize("large")}
-              style={{ background: gridSize === "large" ? "var(--btn-hover-bg)" : "var(--bg)" }}
+              style={{
+                background:
+                  gridSize === "large" ? "var(--btn-hover-bg)" : "var(--bg)",
+              }}
             >
               <i className="material-icons">crop_square</i>
               Large
@@ -67,7 +83,9 @@ function GalleryPage() {
           </div>
         )}
 
-        <div className={`${styles.galleryContainer} ${styles.square} ${styles[gridSize]}`}>
+        <div
+          className={`${styles.galleryContainer} ${styles.square} ${styles[gridSize]}`}
+        >
           <img src={img1} alt="Comp Sci Department" />
           <img src={img2} alt="Senate Building" />
           <img src={img3} alt="Tetfund 7 In One Building" />

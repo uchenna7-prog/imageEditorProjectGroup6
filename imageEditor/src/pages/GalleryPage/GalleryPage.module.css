@@ -4,6 +4,7 @@
   height: 100vh;
   background: var(--bg);
   color: var(--textColor);
+  overflow: hidden;
 }
 
 .galleryMain {
@@ -12,11 +13,16 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transition: margin-left 0.3s ease;
+}
+
+.mainExpanded {
+  margin-left: 0;
 }
 
 .gridDisplaySizesContainer {
   position: absolute;
-  top: 80px;
+  top: 90px;
   right: 20px;
   width: 200px;
   border: 1px solid #ccc;
@@ -49,10 +55,11 @@
   border-bottom: 1px solid #e5e5e5;
   cursor: pointer;
   font-size: 0.9rem;
+  transition: background-color 0.2s ease;
 }
 
 .gridSizeBtn:hover {
-  background: #f0f0f0;
+  background: var(--btn-hover-bg);
 }
 
 .galleryContainer {
@@ -89,9 +96,85 @@
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease;
+  cursor: pointer;
 }
 
 .square img:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .galleryMain {
+    width: 100%;
+  }
+
+  .galleryContainer {
+    padding: 16px;
+  }
+
+  .square.small {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-auto-rows: 120px;
+    gap: 12px;
+  }
+
+  .square.medium {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-auto-rows: 150px;
+    gap: 12px;
+  }
+
+  .square.large {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: 200px;
+    gap: 12px;
+  }
+
+  .gridDisplaySizesContainer {
+    top: 80px;
+    right: 10px;
+    width: 180px;
+  }
+}
+
+/* Tablet Responsive */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .galleryContainer {
+    padding: 20px;
+  }
+
+  .square.small {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-auto-rows: 150px;
+  }
+
+  .square.medium {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-auto-rows: 220px;
+  }
+
+  .square.large {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: 300px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1400px) {
+  .square.small {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: 200px;
+  }
+
+  .square.medium {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-auto-rows: 280px;
+  }
+
+  .square.large {
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    grid-auto-rows: 450px;
+  }
 }

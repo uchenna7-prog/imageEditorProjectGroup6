@@ -1,41 +1,47 @@
-
 import styles from "./Sidebar.module.css";
+import { useSidebar } from "../../contexts/SidebarContext";
 
-function Sidebar(){
+function Sidebar() {
+  const { isCollapsed, isMobile, isSidebarOpen, toggleSidebar, closeSidebar } = useSidebar();
 
-    return(
-        <aside className={styles.sidebar}>
+  return (
+    <>
+      {/* Overlay for mobile */}
+      {isMobile && isSidebarOpen && (
+        <div className={styles.overlay} onClick={closeSidebar}></div>
+      )}
 
-            <header className={styles.sidebarHeader}>
+      <aside
+        className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ""} ${
+          isMobile ? (isSidebarOpen ? styles.mobileOpen : styles.mobileClosed) : ""
+        }`}
+      >
+        <header className={styles.sidebarHeader}>
+          <button className={styles.menuBtn} onClick={toggleSidebar}>
+            <i className="material-icons">menu</i>
+          </button>
 
-                <button className={styles.menuBtn}>
-                    <i className="material-icons">menu</i>
-                </button>
+          {!isCollapsed && (
+            <div className={styles.sidebarTitle}>
+              <h2>IMAGE GALLERY</h2>
+            </div>
+          )}
+        </header>
 
-                <div className={styles.sidebarTitle}>
-                    <h2>IMAGE GALLERY</h2>
-                </div>
+        <nav className={styles.navLinksContainer}>
+          <button className={styles.navBtn}>
+            <i className="material-icons">photo_library</i>
+            {!isCollapsed && <span>Gallery</span>}
+          </button>
 
-            </header>
-
-            <nav className={styles.navLinksContainer}>
-
-                <button className={styles.navBtn} >
-                    <i className="material-icons">photo_library</i>
-                    <span>Gallery</span>
-                </button>
-
-                <button  className={styles.navBtn}>
-                    <i className="material-icons">edit</i>
-                    <span>Edits</span>
-                </button>
-                
-
-            </nav>
-            
-        </aside>
-    )
-   
+          <button className={styles.navBtn}>
+            <i className="material-icons">edit</i>
+            {!isCollapsed && <span>Edits</span>}
+          </button>
+        </nav>
+      </aside>
+    </>
+  );
 }
 
 export default Sidebar;

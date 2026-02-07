@@ -1,53 +1,128 @@
-.galleryHeader{
+.galleryHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   border-bottom: 1px solid #ccc;
   height: 80px;
+  gap: 12px;
 }
 
-.headerButtonsContainer{
-  display: flex;
-  gap: 20px;
+.mobileMenuBtn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
 }
 
-.headerButton{
-    display: flex;
-    align-items: center;
-    border: none;
-    padding: 5px;
-    background: none;
-    cursor: pointer;
-    background: var(--btn-bg);
-}
-
-.headerButton:hover{
+.mobileMenuBtn:hover {
   background-color: var(--btn-hover-bg);
-  border-radius: 5px;
+}
+
+.mobileMenuBtn i {
+  color: var(--textColor);
+}
+
+.headerButtonsContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.headerButton {
+  display: flex;
+  align-items: center;
+  border: none;
+  padding: 8px;
+  background: var(--btn-bg);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.headerButton:hover {
+  background-color: var(--btn-hover-bg);
   border: 1px solid #ccc;
 }
 
-.searchContainer{
+.headerButton i {
+  color: var(--textColor);
+}
+
+.searchContainer {
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 5px 10px;
+  padding: 8px 12px;
   display: flex;
   align-items: center;
   gap: 10px;
-
+  flex: 1;
+  max-width: 500px;
+  transition: border-color 0.2s ease;
 }
 
-
-.searchContainer:focus-within{
-  border-color:black;
-
+.searchContainer:focus-within {
+  border-color: black;
 }
 
-.searchInput{
-  border:none;
+.searchContainer i {
+  color: #5f6368;
+}
+
+.searchInput {
+  border: none;
   outline: none;
-  padding: 5px;
-  width: 200px;
+  padding: 4px;
+  width: 100%;
+  font-size: 0.95rem;
+  background: transparent;
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .galleryHeader {
+    padding: 8px 12px;
+    height: 70px;
+  }
+
+  .mobileMenuBtn {
+    display: flex;
+  }
+
+  .searchContainer {
+    max-width: none;
+    padding: 6px 10px;
+  }
+
+  .searchInput {
+    font-size: 0.9rem;
+  }
+
+  .headerButtonsContainer {
+    gap: 8px;
+  }
+
+  .headerButton {
+    padding: 6px;
+  }
+
+  .headerButton i {
+    font-size: 20px;
+  }
+}
+
+/* Tablet Responsive */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .searchContainer {
+    max-width: 400px;
+  }
+
+  .headerButtonsContainer {
+    gap: 10px;
+  }
 }
