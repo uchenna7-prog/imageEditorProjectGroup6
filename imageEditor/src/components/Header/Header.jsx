@@ -48,7 +48,7 @@ function Header() {
           }`}
           onClick={() => changeViewType("grid")}
         >
-          <i className="material-icons">grid_on</i>
+          <i className="material-icons">grid_view</i>
           <i className="material-icons" style={{ fontSize: "18px" }}>
             keyboard_arrow_down
           </i>

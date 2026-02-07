@@ -41,7 +41,7 @@ function GalleryPage() {
               onClick={() => changeGridSize("small")}
               style={{ background: gridSize === "small" ? "var(--btn-hover-bg)" : "var(--bg)" }}
             >
-              <i className="material-icons">window</i> Small
+              <i className="material-icons">grid_on</i> Small
             </button>
             <button
               className={styles.gridSizeBtn}

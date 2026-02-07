@@ -6,7 +6,6 @@ function Sidebar() {
 
   return (
     <>
-      {/* Overlay for mobile */}
       {isMobile && isSidebarOpen && (
         <div className={styles.overlay} onClick={closeSidebar}></div>
       )}
@@ -16,9 +15,9 @@ function Sidebar() {
           isMobile ? (isSidebarOpen ? styles.mobileOpen : styles.mobileClosed) : ""
         }`}
       >
-        <header className={styles.sidebarHeader}>
+        <header className={`${styles.sidebarHeader} ${isMobile ? styles.mobileSideHeader : ""}`}>
           <button className={styles.menuBtn} onClick={toggleSidebar}>
-            <i className="material-icons">menu</i>
+            <i className="material-icons">{isSidebarOpen ? "close" : "menu"}</i>
           </button>
 
           {!isCollapsed && (

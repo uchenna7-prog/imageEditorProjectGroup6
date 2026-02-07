@@ -7,16 +7,16 @@ export function SidebarProvider({ children }) {
   const [isMobile, setIsMobile] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  const handleResize = () => {
+    const mobile = window.innerWidth < 768;
+    setIsMobile(mobile);
+    
+    if (mobile) {
+      setIsSidebarOpen(false);
+    }
+  };
+
   useEffect(() => {
-    const handleResize = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-      
-      // On mobile, sidebar is hidden by default
-      if (mobile) {
-        setIsSidebarOpen(false);
-      }
-    };
 
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -26,7 +26,8 @@ export function SidebarProvider({ children }) {
   const toggleSidebar = () => {
     if (isMobile) {
       setIsSidebarOpen(!isSidebarOpen);
-    } else {
+    } 
+    else {
       setIsCollapsed(!isCollapsed);
     }
   };

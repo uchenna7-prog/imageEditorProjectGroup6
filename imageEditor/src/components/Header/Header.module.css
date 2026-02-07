@@ -107,7 +107,13 @@
 
   .searchContainer {
     max-width: none;
+    gap: 8px;
     padding: 6px 10px;
+    font-size: small;
+  }
+
+  .searchContainer i{
+    font-size: medium;
   }
 
   .searchInput {
