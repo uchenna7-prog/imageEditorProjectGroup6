@@ -72,6 +72,13 @@ function GalleryPage() {
                 viewType === "list" ? styles.listLayoutItem : styles.gridLayoutItem
               }`}
             >
+              {
+                viewType === "grid" && (
+                <div className={styles.imageOverlay}>
+                  <i className="material-icons">edit</i>
+                </div>
+                )
+              }
               {viewType === "list" ? (
                 <div className={styles.listItemContent}>
                   <img src={img.src} alt={img.name} />
@@ -89,7 +96,8 @@ function GalleryPage() {
                   </div>
                 </div>
               ) : (
-                <img src={img.src} alt={img.name} />
+                <img className={`${styles.image} ${
+                viewType === "list" ? styles.listLayoutImage : styles.gridLayoutImage}`} src={img.src} alt={img.name} />
               )}
             </div>
           ))}
