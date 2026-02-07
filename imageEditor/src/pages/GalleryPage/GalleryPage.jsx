@@ -35,7 +35,7 @@ function GalleryPage() {
 
         {showGridDisplaySizes && (
           <div className={styles.gridDisplaySizesContainer}>
-            <div className={styles.gridDisplaySizeTitle}>SIZE</div>
+            <div className={styles.gridDisplaySizeTitle}>SIZES</div>
 
             <button
               className={styles.gridSizeBtn}

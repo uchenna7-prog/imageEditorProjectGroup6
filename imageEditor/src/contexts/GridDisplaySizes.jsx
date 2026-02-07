@@ -8,12 +8,9 @@ export function GridDisplaySizesProvider({ children }) {
   const [gridLayout, setGridLayout] = useState("square");
   const [gridSize, setGridSize] = useState("medium");
 
-  const changeGridLayout = (newGridLayout) => {
-    setGridLayout(newGridLayout);
-  };
-
   const changeGridSize = (newGridSize) => {
     setGridSize(newGridSize);
+    toggleGridDisplaySizes()
   };
 
   const changeViewType = (newViewType) => {

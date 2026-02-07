@@ -38,7 +38,7 @@ function Header() {
           className={styles.headerButton}
           onClick={() => changeViewType("list")}
         >
-          <i className="material-icons">view_headline</i>
+          <i className="material-icons">list</i>
         </button>
 
         <button
