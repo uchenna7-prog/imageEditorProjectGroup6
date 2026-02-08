@@ -11,16 +11,21 @@ import img9 from "../assets/pharmacyBuilding.jpg";
 
 export const ImageContext = createContext();
 
+const defaultFilters = {
+  brightness: 100,
+  contrast: 100,
+  grayscale: 0,
+};
 const images = [
-  { src: img1, name: "Comp Sci Department", size: "1.2 MB" },
-  { src: img2, name: "Senate Building", size: "2.5 MB" },
-  { src: img3, name: "Tetfund 7 In One Building", size: "3.1 MB" },
-  { src: img4, name: "Library Building", size: "2.0 MB" },
-  { src: img5, name: "Ofirima Building", size: "1.8 MB" },
-  { src: img6, name: "New Convocation Arena", size: "3.5 MB" },
-  { src: img7, name: "Faculty of Law Building", size: "2.3 MB" },
-  { src: img8, name: "Management Sci Building", size: "1.9 MB" },
-  { src: img9, name: "Pharmacy Building", size: "2.7 MB" },
+  { src: img1, name: "Comp Sci Department", size: "1.2 MB",filters : defaultFilters },
+  { src: img2, name: "Senate Building", size: "2.5 MB",filters : defaultFilters },
+  { src: img3, name: "Tetfund 7 In One Building", size: "3.1 MB",filters : defaultFilters },
+  { src: img4, name: "Library Building", size: "2.0 MB",filters : defaultFilters },
+  { src: img5, name: "Ofirima Building", size: "1.8 MB",filters : defaultFilters },
+  { src: img6, name: "New Convocation Arena", size: "3.5 MB",filters : defaultFilters },
+  { src: img7, name: "Faculty of Law Building", size: "2.3 MB",filters : defaultFilters },
+  { src: img8, name: "Management Sci Building", size: "1.9 MB",filters : defaultFilters },
+  { src: img9, name: "Pharmacy Building", size: "2.7 MB",filters : defaultFilters },
   
 ];
 
@@ -42,7 +47,6 @@ export function ImageProvider({ children }) {
   const addEditedImage = (image) => {
     setEditedImages((prev) => [image, ...prev]);
   };
-
 
   const getAllImages = () => images;
 

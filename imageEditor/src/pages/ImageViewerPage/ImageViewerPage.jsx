@@ -12,7 +12,6 @@ function ImageViewerPage() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
-  // Filter state
   const [brightness, setBrightness] = useState(100);
   const [contrast, setContrast] = useState(100);
   const [grayscale, setGrayscale] = useState(0);
@@ -38,10 +37,7 @@ function ImageViewerPage() {
   }, []);
 
   const toggleEdit = () => setIsEditing(!isEditing);
-
-  const applyFilters = () => {
-    return `brightness(${brightness}%) contrast(${contrast}%) grayscale(${grayscale}%)`;
-  };
+ 
 
   const resetFilters = () => {
     setBrightness(100);
@@ -52,7 +48,7 @@ function ImageViewerPage() {
   const saveImage = () => {
 
   const editedImage = {
-    name: clickedImage?.name || "Edited Image",
+    name: clickedImage?.name + "(Edited)" || "Edited Image",
     src: clickedImage?.src || "",
     filters: {
       brightness,
@@ -110,7 +106,9 @@ function ImageViewerPage() {
                 : "https://via.placeholder.com/800x600?text=No+Image+Selected"
             }
             alt={clickedImage ? clickedImage.name : "No Image Selected"}
-            style={{ filter: applyFilters(), width: isEditing ? "auto" : "700px", height: "auto" }}
+            style={{ filter: `brightness(${brightness || clickedImage?.filters?.brightness || 100}%) 
+            contrast(${contrast || clickedImage?.filters?.contrast || 100}%) 
+            grayscale(${grayscale || clickedImage?.filters?.grayscale || 0}%)`, width: isEditing ? "auto" : "700px", height: "auto" }}
           />
         </div>
 
