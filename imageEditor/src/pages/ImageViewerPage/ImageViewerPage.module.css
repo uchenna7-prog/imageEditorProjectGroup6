@@ -168,12 +168,13 @@
 @media (max-width: 768px) {
   .buttonsContainer {
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     padding: 10px 12px;
+   
   }
 
   .buttonsContainer button {
-    font-size: 13px;
+    font-size: small;
     padding: 5px 8px;
   }
 

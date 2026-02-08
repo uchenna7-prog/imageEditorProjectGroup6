@@ -71,7 +71,7 @@ function ImageViewerPage() {
     <div className={styles.imageViewerPage}>
       {!isFullscreen && <Sidebar />}
 
-      <main className={styles.imageViewerMain}>
+      <main ref={viewerRef} className={styles.imageViewerMain}>
         <Header showSearchBar={false} showDisplayLayoutBtns={false} />
 
         <div className={styles.buttonsContainer}>
