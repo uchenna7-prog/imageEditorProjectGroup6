@@ -45,7 +45,7 @@ function Header({showSearchBar,showDisplayLayoutBtns}) {
 
         {
           showDisplayLayoutBtns && (
-            <div>
+            <div className={styles.displayLayoutBtnsContainer}>
               <button
                 className={`${styles.headerButton} ${
                   viewType === "list" ? styles.active : ""

@@ -88,6 +88,11 @@
   font-size: small;
 }
 
+.displayLayoutBtnsContainer {
+  display: flex;
+  gap: 8px;
+}
+
 .active {
   background-color: #e8f0fe;
   border: 1px solid #1a73e8;
