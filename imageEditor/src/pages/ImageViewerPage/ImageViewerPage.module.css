@@ -1,0 +1,153 @@
+.imageViewerPage {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background: var(--bg);
+  color: var(--textColor);
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.imageViewerMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+
+.buttonsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--bg);
+  border-bottom: 1px solid #ccc;
+  z-index: 10;
+}
+
+.buttonsContainer button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  background: #e8f0fe;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.backBtn {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  background: #e8f0fe;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.buttonsContainer button:hover {
+  background-color: #d2e3fc;
+}
+
+.buttonsContainer button:active {
+  transform: scale(0.96);
+}
+
+.buttonsContainer i {
+  font-size: 18px;
+  color: black;
+}
+
+
+.imageActionsContainer {
+  display: flex;
+  gap: 12px;
+}
+
+
+.imageContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+
+.imageContainer img {
+  max-width: 95vw;
+  max-height: calc(100vh - 200px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease;
+}
+
+.imageContainer img:hover {
+  transform: scale(1.015);
+}
+
+/* FULLSCREEN MODE */
+:fullscreen .imageViewerPage {
+  background: black;
+}
+
+:fullscreen .imageContainer {
+  padding: 0;
+}
+
+:fullscreen .imageContainer img {
+  max-width: 100vw;
+  max-height: 100vh;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+:fullscreen .buttonsContainer {
+  background: rgba(0, 0, 0, 0.6);
+  border-bottom: none;
+}
+
+:fullscreen .buttonsContainer button {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+:fullscreen .buttonsContainer .backBtn {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+:fullscreen .buttonsContainer i {
+  color: white;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .buttonsContainer {
+    padding: 10px 12px;
+  }
+
+  .buttonsContainer button {
+    font-size: 13px;
+    padding: 5px 8px;
+  }
+
+  .imageContainer {
+    padding: 8px;
+  }
+}

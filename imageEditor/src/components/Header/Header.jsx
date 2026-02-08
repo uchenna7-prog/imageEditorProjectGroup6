@@ -4,27 +4,37 @@ import { GridDisplaySizesContext } from "../../contexts/GridDisplaySizes";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useSidebar } from "../../contexts/SidebarContext";
 
-function Header() {
+function Header({showSearchBar}) {
   const { changeViewType, viewType } = useContext(GridDisplaySizesContext);
   const { theme, toggleTheme } = useTheme();
   const { toggleSidebar, isMobile } = useSidebar();
 
   return (
-    <header className={styles.galleryHeader}>
+    <header className={styles.galleryHeader} style={{
+  justifyContent: !isMobile && !showSearchBar
+    ? "flex-end"
+    : "space-between",
+}}
+>
       {isMobile && (
         <button className={styles.mobileMenuBtn} onClick={toggleSidebar}>
           <i className="material-icons">menu</i>
         </button>
       )}
 
-      <div className={styles.searchContainer}>
-        <i className="material-icons">search</i>
-        <input
-          type="text"
-          placeholder="Search images..."
-          className={styles.searchInput}
-        />
-      </div>
+      {
+        showSearchBar && (
+        <div className={styles.searchContainer}>
+          <i className="material-icons">search</i>
+          <input
+            type="text"
+            placeholder="Search images..."
+            className={styles.searchInput}
+          />
+        </div>
+        )
+      }
+
 
       <div className={styles.headerButtonsContainer}>
         <button className={styles.headerButton} onClick={toggleTheme}>

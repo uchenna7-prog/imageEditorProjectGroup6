@@ -1,43 +1,31 @@
 import styles from "./GalleryPage.module.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
-
-import img1 from "../../assets/compSciDepartment.jpg";
-import img2 from "../../assets/senateBuilding.jpg";
-import img3 from "../../assets/tetfund7InOneBuilding.jpg";
-import img4 from "../../assets/libraryBuilding.jpg";
-import img5 from "../../assets/ofirimaBuilding.jpg";
-import img6 from "../../assets/newConvocationArena.jpg";
-import img7 from "../../assets/facultyOfLawBuilding.jpg";
-import img8 from "../../assets/managementSciBuilding.jpg";
-import img9 from "../../assets/pharmacyBuilding.jpg";
+import { ImageContext} from "../../contexts/ImageContext";
 
 import { GridDisplaySizesContext } from "../../contexts/GridDisplaySizes";
 import { useContext } from "react";
 import { useSidebar } from "../../contexts/SidebarContext";
+import { Link } from "react-router-dom";
 
-const images = [
-  { src: img1, name: "Comp Sci Department", size: "1.2 MB" },
-  { src: img2, name: "Senate Building", size: "2.5 MB" },
-  { src: img3, name: "Tetfund 7 In One Building", size: "3.1 MB" },
-  { src: img4, name: "Library Building", size: "2.0 MB" },
-  { src: img5, name: "Ofirima Building", size: "1.8 MB" },
-  { src: img6, name: "New Convocation Arena", size: "3.5 MB" },
-  { src: img7, name: "Faculty of Law Building", size: "2.3 MB" },
-  { src: img8, name: "Management Sci Building", size: "1.9 MB" },
-  { src: img9, name: "Pharmacy Building", size: "2.7 MB" },
-];
 
 function GalleryPage() {
+
+  const { getAllImages, selectImage } = useContext(ImageContext);
+
+  
+  const images = getAllImages()
+
   const { viewType, showGridDisplaySizes, gridSize, changeGridSize } = useContext(GridDisplaySizesContext);
   const { isCollapsed, isMobile } = useSidebar();
+  
 
   return (
     <div className={styles.galleryPageContainer}>
       <Sidebar />
 
       <main className={`${styles.galleryMain} ${isCollapsed && !isMobile ? styles.mainExpanded : ""}`}>
-        <Header />
+        <Header showSearchBar = {true} />
 
         {showGridDisplaySizes && (
           <div className={styles.gridDisplaySizesContainer}>
@@ -72,16 +60,18 @@ function GalleryPage() {
           }`}
         >
           {images.map((img, idx) => (
-            <div
+            
+            <Link to="/image" style={{ textDecoration: "none", color: "inherit" }}
               key={idx}
               className={`${styles.imageContainer} ${
                 viewType === "list" ? styles.listLayoutItem : styles.gridLayoutItem
               }`}
+              onClick={() => selectImage(img)}
             >
               {
                 viewType === "grid" && (
                 <div className={styles.imageOverlay}>
-                  <i className="material-icons">edit</i>
+                  <i className="material-icons">visibility</i>
                 </div>
                 )
               }
@@ -105,7 +95,7 @@ function GalleryPage() {
                 <img className={`${styles.image} ${
                 viewType === "list" ? styles.listLayoutImage : styles.gridLayoutImage}`} src={img.src} alt={img.name} />
               )}
-            </div>
+            </Link>
           ))}
         </div>
       </main>
