@@ -8,14 +8,12 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
 .imageViewerMain {
   flex: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
-
 
 .buttonsContainer {
   display: flex;
@@ -47,12 +45,8 @@
   align-items: center;
   gap: 6px;
   padding: 6px 10px;
-  border: none;
   border-radius: 6px;
   background: #e8f0fe;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .buttonsContainer button:hover {
@@ -68,12 +62,10 @@
   color: black;
 }
 
-
 .imageActionsContainer {
   display: flex;
   gap: 12px;
 }
-
 
 .imageContainer {
   flex: 1;
@@ -85,23 +77,44 @@
   background: var(--bg);
 }
 
-
 .imageContainer img {
   max-width: 95vw;
-  max-height: calc(100vh - 200px);
+  max-height: calc(100vh - 250px);
   width: auto;
   height: auto;
   object-fit: contain;
   border-radius: 10px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  transition: transform 0.25s ease;
+  transition: transform 0.25s ease, filter 0.2s ease;
 }
 
 .imageContainer img:hover {
   transform: scale(1.015);
 }
 
-/* FULLSCREEN MODE */
+/* EDIT PANEL */
+.editPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid #ccc;
+  background: var(--bg);
+}
+
+.editPanel input[type="range"] {
+  width: 100%;
+}
+
+.resetBtn {
+  padding: 6px 10px;
+  background: #d1d9e7;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* FULLSCREEN */
 :fullscreen .imageViewerPage {
   background: black;
 }
