@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 function ImageViewerPage() {
-  const { clickedImage } = useContext(ImageContext);
+  const { clickedImage,addEditedImage } = useContext(ImageContext);
   const viewerRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -50,22 +50,32 @@ function ImageViewerPage() {
   };
 
   const saveImage = () => {
-    const img = viewerRef.current.querySelector("img");
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
+  const img = viewerRef.current.querySelector("img");
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
 
-    canvas.width = img.naturalWidth;
-    canvas.height = img.naturalHeight;
+  canvas.width = img.naturalWidth;
+  canvas.height = img.naturalHeight;
 
-    ctx.filter = applyFilters();
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  ctx.filter = applyFilters();
+  ctx.drawImage(img, 0, 0);
 
-    const link = document.createElement("a");
-    link.download = clickedImage?.name || "edited-image.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
+  const editedImage = {
+    id: Date.now(),
+    src: canvas.toDataURL("image/png"),
+    name: clickedImage?.name || "Edited Image",
+    filters: {
+      brightness,
+      contrast,
+      grayscale,
+    },
+    editedAt: new Date().toISOString(),
   };
 
+  addEditedImage(editedImage);
+  window.alert("Image saved to edits!");
+};
+ 
   return (
     <div ref={viewerRef} className={styles.imageViewerPage}>
       {!isFullscreen && <Sidebar />}

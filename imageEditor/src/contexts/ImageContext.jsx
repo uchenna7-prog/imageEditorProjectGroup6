@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import img1 from "../assets/compSciDepartment.jpg";
 import img2 from "../assets/senateBuilding.jpg";
 import img3 from "../assets/tetfund7InOneBuilding.jpg";
@@ -26,6 +26,28 @@ const images = [
 
 export function ImageProvider({ children }) {
   const [clickedImage, setClickedImage] = useState(null);
+  const [editedImages, setEditedImages] = useState([]);
+
+  useEffect(() => {
+    const storedEdits = localStorage.getItem("editedImages");
+    if (storedEdits) {
+      setEditedImages(JSON.parse(storedEdits));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("editedImages", JSON.stringify(editedImages));
+  }, [editedImages]);
+
+  const addEditedImage = (image) => {
+    setEditedImages((prev) => [image, ...prev]);
+  };
+
+  const removeEditedImage = (id) => {
+    setEditedImages((prev) => prev.filter((img) => img.id !== id));
+  };
+
+
 
   const getAllImages = () => images;
 
@@ -39,6 +61,9 @@ export function ImageProvider({ children }) {
         getAllImages,
         clickedImage,
         selectImage,
+        editedImages,
+        addEditedImage,
+        removeEditedImage 
       }}
     >
       {children}

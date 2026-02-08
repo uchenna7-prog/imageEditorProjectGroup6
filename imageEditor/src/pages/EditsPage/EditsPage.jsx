@@ -11,9 +11,7 @@ import { Link } from "react-router-dom";
 
 function EditsPage() {
 
-  const { getAllImages, selectImage } = useContext(ImageContext);
-
-  const images = getAllImages()
+  const { editedImages, selectImage } = useContext(ImageContext);
 
   const { viewType, showGridDisplaySizes, gridSize, changeGridSize } = useContext(GridDisplaySizesContext);
   const { isCollapsed, isMobile } = useSidebar();
@@ -59,7 +57,7 @@ function EditsPage() {
             viewType === "grid" ? `${styles.gridLayout} ${styles[gridSize]}` : styles.listLayout
           }`}
         >
-          {images.map((img, idx) => (
+          {editedImages.map((img, idx) => (
             
             <Link to="/image" style={{ textDecoration: "none", color: "inherit" }}
               key={idx}
