@@ -110,38 +110,49 @@ function ImageViewerPage() {
                 : "https://via.placeholder.com/800x600?text=No+Image+Selected"
             }
             alt={clickedImage ? clickedImage.name : "No Image Selected"}
-            style={{ filter: applyFilters() }}
+            style={{ filter: applyFilters(), width: isEditing ? "auto" : "700px", height: "auto" }}
           />
         </div>
 
         {isEditing && (
           <div className={styles.editPanel}>
-            <label>Brightness</label>
-            <input
-              type="range"
-              min="0"
-              max="200"
-              value={brightness}
-              onChange={(e) => setBrightness(e.target.value)}
-            />
+            <h2 className={styles.editPanelTitle}>FILTERS</h2>
 
-            <label>Contrast</label>
-            <input
-              type="range"
-              min="0"
-              max="200"
-              value={contrast}
-              onChange={(e) => setContrast(e.target.value)}
-            />
+            <div className={styles.filterControl}>
+                <label>Brightness</label>
+                <input
+                    type="range"
+                    min="0"
+                    max="200"
+                    value={brightness}
+                    onChange={(e) => setBrightness(e.target.value)}
+                />
+            </div>
+            
+            <div className={styles.filterControl}>
 
-            <label>Grayscale</label>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={grayscale}
-              onChange={(e) => setGrayscale(e.target.value)}
-            />
+                <label>Contrast</label>
+                <input
+                type="range"
+                min="0"
+                max="200"
+                value={contrast}
+                onChange={(e) => setContrast(e.target.value)}
+                />
+
+            </div>
+
+            <div className={styles.filterControl}>
+
+                <label>Grayscale</label>
+                <input
+                type="range"
+                min="0"
+                max="100"
+                value={grayscale}
+                onChange={(e) => setGrayscale(e.target.value)}
+                />
+            </div>
 
             <button onClick={resetFilters} className={styles.resetBtn}>
               Reset

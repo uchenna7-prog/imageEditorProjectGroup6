@@ -21,6 +21,7 @@ const images = [
   { src: img7, name: "Faculty of Law Building", size: "2.3 MB" },
   { src: img8, name: "Management Sci Building", size: "1.9 MB" },
   { src: img9, name: "Pharmacy Building", size: "2.7 MB" },
+  
 ];
 
 export function ImageProvider({ children }) {

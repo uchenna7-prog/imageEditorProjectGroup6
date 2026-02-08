@@ -1,5 +1,6 @@
 import styles from "./Sidebar.module.css";
 import { useSidebar } from "../../contexts/SidebarContext";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   const { isCollapsed, isMobile, isSidebarOpen, toggleSidebar, closeSidebar } = useSidebar();
@@ -28,10 +29,10 @@ function Sidebar() {
         </header>
 
         <nav className={styles.navLinksContainer}>
-          <button className={styles.navBtn}>
+          <Link to="/" className={styles.navBtn}>
             <i className="material-icons">photo_library</i>
             {!isCollapsed && <span>Gallery</span>}
-          </button>
+          </Link>
 
           <button className={styles.navBtn}>
             <i className="material-icons">edit</i>
