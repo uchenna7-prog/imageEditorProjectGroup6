@@ -64,7 +64,6 @@ function ImageViewerPage() {
   addEditedImage(editedImage);
   window.alert("Image saved to edits!");
 
-  console.log("Saved Edited Image:", editedImage);
 };
  
   return (

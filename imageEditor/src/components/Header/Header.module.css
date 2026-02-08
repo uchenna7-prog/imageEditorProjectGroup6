@@ -6,6 +6,7 @@
   border-bottom: 1px solid #ccc;
   height: 80px;
   gap: 12px;
+  background: var(--bg);
 }
 
 .mobileMenuBtn {

@@ -13,6 +13,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background: var(--bg);
 }
 
 .buttonsContainer {
@@ -131,7 +132,12 @@
 
 /* FULLSCREEN */
 :fullscreen .imageViewerPage {
-  background: black;
+  background: var(--bg);
+  color: var(--textColor);
+}
+
+:fullscreen .imageViewerMain {
+  background: var(--bg);
 }
 
 :fullscreen .imageContainer {
@@ -146,22 +152,23 @@
 }
 
 :fullscreen .buttonsContainer {
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--bg);
   border-bottom: none;
 }
 
-:fullscreen .buttonsContainer button {
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
+:fullscreen .buttonsContainer button i {
+  background: #e8f0fe;
+  color: black;
 }
 
-:fullscreen .buttonsContainer .backBtn {
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
+
+:fullscreen .buttonsContainer .backBtn i {
+  background: #e8f0fe;
+  color: black;
 }
 
 :fullscreen .buttonsContainer i {
-  color: white;
+  color: var(--textColor);
 }
 
 /* MOBILE */
