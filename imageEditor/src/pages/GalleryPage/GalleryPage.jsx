@@ -13,7 +13,6 @@ function GalleryPage() {
 
   const { getAllImages, selectImage } = useContext(ImageContext);
 
-  
   const images = getAllImages()
 
   const { viewType, showGridDisplaySizes, gridSize, changeGridSize } = useContext(GridDisplaySizesContext);
@@ -28,7 +27,7 @@ function GalleryPage() {
         <Header showSearchBar = {true} showDisplayLayoutBtns={true}/>
 
         {showGridDisplaySizes && (
-          
+
           <div className={styles.gridDisplaySizesContainer}>
             <div className={styles.gridDisplaySizeTitle}>SIZES</div>
             <button

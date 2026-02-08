@@ -29,15 +29,15 @@ function Sidebar() {
         </header>
 
         <nav className={styles.navLinksContainer}>
-          <Link to="/" className={styles.navBtn}>
+          <Link to="/" className={styles.navBtn} onClick={()=> isMobile && toggleSidebar()}>
             <i className="material-icons">photo_library</i>
             {!isCollapsed && <span>Gallery</span>}
           </Link>
 
-          <button className={styles.navBtn}>
+          <Link to="/edits" className={styles.navBtn} onClick={()=> isMobile && toggleSidebar()}>
             <i className="material-icons">edit</i>
             {!isCollapsed && <span>Edits</span>}
-          </button>
+          </Link>
         </nav>
       </aside>
     </>
