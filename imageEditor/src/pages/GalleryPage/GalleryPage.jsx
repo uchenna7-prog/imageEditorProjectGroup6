@@ -71,7 +71,7 @@ function GalleryPage() {
               {
                 viewType === "grid" && (
                 <div className={styles.imageOverlay}>
-                  <i className="material-icons">visibility</i>
+                  <i className="material-icons" style={{fontSize:"small"}}>visibility</i>
                 </div>
                 )
               }

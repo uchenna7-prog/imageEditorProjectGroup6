@@ -139,6 +139,8 @@
 /* MOBILE */
 @media (max-width: 768px) {
   .buttonsContainer {
+    justify-content: center;
+    gap: 12px;
     padding: 10px 12px;
   }
 
