@@ -25,9 +25,10 @@ function GalleryPage() {
       <Sidebar />
 
       <main className={`${styles.galleryMain} ${isCollapsed && !isMobile ? styles.mainExpanded : ""}`}>
-        <Header showSearchBar = {true} />
+        <Header showSearchBar = {true} showDisplayLayoutBtns={true}/>
 
         {showGridDisplaySizes && (
+          
           <div className={styles.gridDisplaySizesContainer}>
             <div className={styles.gridDisplaySizeTitle}>SIZES</div>
             <button
