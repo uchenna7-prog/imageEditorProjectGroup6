@@ -4,7 +4,7 @@ import { GridDisplaySizesContext } from "../../contexts/GridDisplaySizes";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useSidebar } from "../../contexts/SidebarContext";
 
-function Header({showSearchBar}) {
+function Header({showSearchBar,showDisplayLayoutBtns}) {
   const { changeViewType, viewType } = useContext(GridDisplaySizesContext);
   const { theme, toggleTheme } = useTheme();
   const { toggleSidebar, isMobile } = useSidebar();
@@ -43,26 +43,37 @@ function Header({showSearchBar}) {
           </i>
         </button>
 
-        <button
-          className={`${styles.headerButton} ${
-            viewType === "list" ? styles.active : ""
-          }`}
-          onClick={() => changeViewType("list")}
-        >
-          <i className="material-icons">list</i>
-        </button>
+        {
+          showDisplayLayoutBtns && (
+            <div>
+              <button
+                className={`${styles.headerButton} ${
+                  viewType === "list" ? styles.active : ""
+                }`}
+                onClick={() => changeViewType("list")}
+              >
+                <i className="material-icons">list</i>
+              </button>
 
-        <button
-          className={`${styles.headerButton} ${
-            viewType === "grid" ? styles.active : ""
-          }`}
-          onClick={() => changeViewType("grid")}
-        >
-          <i className="material-icons">grid_view</i>
-          <i className="material-icons" style={{ fontSize: "18px" }}>
-            keyboard_arrow_down
-          </i>
-        </button>
+              <button
+                className={`${styles.headerButton} ${
+                  viewType === "grid" ? styles.active : ""
+                }`}
+                onClick={() => changeViewType("grid")}
+              >
+                <i className="material-icons">grid_view</i>
+                <i className="material-icons" style={{ fontSize: "18px" }}>
+                  keyboard_arrow_down
+                </i>
+              </button>
+
+            </div>
+
+
+          )
+        }
+       
+       
 
       </div>
     </header>
