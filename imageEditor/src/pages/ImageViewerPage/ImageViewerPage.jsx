@@ -50,34 +50,25 @@ function ImageViewerPage() {
   };
 
   const saveImage = () => {
-  const img = viewerRef.current.querySelector("img");
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
-
-  canvas.width = img.naturalWidth;
-  canvas.height = img.naturalHeight;
-
-  ctx.filter = applyFilters();
-  ctx.drawImage(img, 0, 0);
 
   const editedImage = {
-    id: Date.now(),
-    src: canvas.toDataURL("image/png"),
     name: clickedImage?.name || "Edited Image",
+    src: clickedImage?.src || "",
     filters: {
       brightness,
       contrast,
       grayscale,
-    },
-    editedAt: new Date().toISOString(),
+    }
   };
 
   addEditedImage(editedImage);
   window.alert("Image saved to edits!");
+
+  console.log("Saved Edited Image:", editedImage);
 };
  
   return (
-    <div ref={viewerRef} className={styles.imageViewerPage}>
+    <div className={styles.imageViewerPage}>
       {!isFullscreen && <Sidebar />}
 
       <main className={styles.imageViewerMain}>

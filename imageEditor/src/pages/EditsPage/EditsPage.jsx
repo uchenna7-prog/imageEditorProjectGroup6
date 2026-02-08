@@ -75,7 +75,9 @@ function EditsPage() {
               }
               {viewType === "list" ? (
                 <div className={styles.listItemContent}>
-                  <img src={img.src} alt={img.name} />
+                  <img src={img.src} alt={img.name} 
+                  style={{filter: `brightness(${img.filters?.brightness || 100}%) contrast(${img.filters?.contrast || 100}%) grayscale(${img.filters?.grayscale || 0}%)`}}
+                  />
                   <div className={styles.fileInfo}>
                     <div className={styles.fileName}>{img.name}</div>
                     <div className={styles.fileSize}>{img.size}</div>
@@ -91,7 +93,9 @@ function EditsPage() {
                 </div>
               ) : (
                 <img className={`${styles.image} ${
-                viewType === "list" ? styles.listLayoutImage : styles.gridLayoutImage}`} src={img.src} alt={img.name} />
+                viewType === "list" ? styles.listLayoutImage : styles.gridLayoutImage}`} src={img.src} alt={img.name} 
+                style={{filter: `brightness(${img.filters?.brightness || 100}%) contrast(${img.filters?.contrast || 100}%) grayscale(${img.filters?.grayscale || 0}%)`}}
+                />
               )}
             </Link>
           ))}

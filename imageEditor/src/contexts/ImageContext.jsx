@@ -43,11 +43,6 @@ export function ImageProvider({ children }) {
     setEditedImages((prev) => [image, ...prev]);
   };
 
-  const removeEditedImage = (id) => {
-    setEditedImages((prev) => prev.filter((img) => img.id !== id));
-  };
-
-
 
   const getAllImages = () => images;
 
@@ -62,8 +57,7 @@ export function ImageProvider({ children }) {
         clickedImage,
         selectImage,
         editedImages,
-        addEditedImage,
-        removeEditedImage 
+        addEditedImage
       }}
     >
       {children}
