@@ -11,10 +11,20 @@ import { Link } from "react-router-dom";
 
 function EditsPage() {
 
-  const { editedImages, selectImage, deleteImage } = useContext(ImageContext);
+    const { 
+    editedImages, 
+    selectImage, 
+    toggleImageSelection, 
+    clickedImages,
+    deleteImage
+  } = useContext(ImageContext);
 
   const { viewType, showGridDisplaySizes, gridSize, changeGridSize } = useContext(GridDisplaySizesContext);
   const { isCollapsed, isMobile } = useSidebar();
+
+  const isImageSelected = (img) => {
+    return clickedImages.some(selected => selected.name === img.name);
+  }
   
 
   return (
@@ -22,7 +32,7 @@ function EditsPage() {
       <Sidebar />
 
       <main className={`${styles.EditsMain} ${isCollapsed && !isMobile ? styles.mainExpanded : ""}`}>
-        <Header showDeleteBtn={true} showDisplayLayoutBtns={true}/>
+        <Header showDeleteBtn={clickedImages.length > 0} showDisplayLayoutBtns={true}/>
 
         {showGridDisplaySizes && (
 
@@ -69,7 +79,16 @@ function EditsPage() {
               {
                 viewType === "grid" && (
                 <div className={styles.imageOverlay}>
-                  <i className="material-icons" style={{fontSize:"small"}}>visibility</i>
+                  <input
+                    type="checkbox"
+                    style={{ width: "15px", height: "15px" }}
+                    checked={isImageSelected(img)}
+                    onChange={(e) => {
+                      e.stopPropagation();
+                      toggleImageSelection(img);
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                  />
                 </div>
                 )
               }

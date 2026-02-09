@@ -30,7 +30,7 @@ function GalleryPage() {
       <Sidebar />
 
       <main className={`${styles.galleryMain} ${isCollapsed && !isMobile ? styles.mainExpanded : ""}`}>
-        <Header showDeleteBtn={true} showDisplayLayoutBtns={true} />
+        <Header showDeleteBtn={clickedImages.length > 0} showDisplayLayoutBtns={true} />
 
         {showGridDisplaySizes && (
           <div className={styles.gridDisplaySizesContainer}>

@@ -36,7 +36,7 @@ function Header({ showDeleteBtn, showDisplayLayoutBtns }) {
       style={{justifyContent: !isMobile? "flex-end" : "space-between"}}
     >
       {isMobile && (
-        <button className={styles.mobileMenuBtn} onClick={toggleSidebar}>
+        <button className={styles.mobileMenuBtn} onClick={toggleSidebar} title="menu">
           <i className="material-icons">menu</i>
         </button>
       )}
@@ -55,7 +55,7 @@ function Header({ showDeleteBtn, showDisplayLayoutBtns }) {
         )}
 
 
-        <button className={styles.headerButton} onClick={toggleTheme}>
+        <button className={styles.headerButton} onClick={toggleTheme} title="Theme">
           <i className="material-icons">
             {theme === "light-mode" ? "dark_mode" : "light_mode"}
           </i>
@@ -66,6 +66,7 @@ function Header({ showDeleteBtn, showDisplayLayoutBtns }) {
             <button
               className={`${styles.headerButton} ${viewType === "list" ? styles.active : ""}`}
               onClick={() => changeViewType("list")}
+              title="List View"
             >
               <i className="material-icons">list</i>
             </button>
@@ -73,6 +74,7 @@ function Header({ showDeleteBtn, showDisplayLayoutBtns }) {
             <button
               className={`${styles.headerButton} ${viewType === "grid" ? styles.active : ""}`}
               onClick={() => changeViewType("grid")}
+              title="Grid View"
             >
               <i className="material-icons">grid_view</i>
               <i className="material-icons" style={{ fontSize: "18px" }}>
