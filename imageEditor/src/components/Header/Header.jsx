@@ -2,16 +2,37 @@ import styles from "./Header.module.css";
 import { useContext } from "react";
 import { GridDisplaySizesContext } from "../../contexts/GridDisplaySizes";
 import { useTheme } from "../../contexts/ThemeContext";
+import { ImageContext } from "../../contexts/ImageContext";
 import { useSidebar } from "../../contexts/SidebarContext";
 
-function Header({showSearchBar,showDisplayLayoutBtns}) {
+function Header({showDeleteBtn,showDisplayLayoutBtns}) {
   const { changeViewType, viewType } = useContext(GridDisplaySizesContext);
   const { theme, toggleTheme } = useTheme();
   const { toggleSidebar, isMobile } = useSidebar();
+  const { deleteImage, clickedImage, clickedImages, setClickedImages } = useContext(ImageContext);
+
+  const handleDeleteSelected = () => {
+  if (clickedImages.length > 0) {
+    setImages(prevImages =>
+      prevImages.filter(img => !clickedImages.some(sel => sel.name === img.name))
+    );
+
+    setClickedImages([]);
+
+    if (clickedImage && clickedImages.some(sel => sel.name === clickedImage.name)) {
+      setClickedImage(null);
+    }
+
+    setEditedImages(prev => prev.filter(img => !clickedImages.some(sel => sel.name === img.name)));
+  } else if (clickedImage) {
+    deleteImage(clickedImage.name);
+  }
+};
+
 
   return (
     <header className={styles.galleryHeader} style={{
-  justifyContent: !isMobile && !showSearchBar
+  justifyContent: !isMobile && !showDeleteBtn
     ? "flex-end"
     : "space-between",
 }}
@@ -23,15 +44,20 @@ function Header({showSearchBar,showDisplayLayoutBtns}) {
       )}
 
       {
-        showSearchBar && (
-        <div className={styles.searchContainer}>
-          <i className="material-icons">search</i>
-          <input
-            type="text"
-            placeholder="Search images..."
-            className={styles.searchInput}
-          />
-        </div>
+        showDeleteBtn && (
+        <button className={`${styles.headerButton} ${styles.deleteBtn}`} onClick={(e) =>{
+          e.stopPropagation(); 
+
+          if(clickedImages.length > 0){
+            clickedImages.forEach(img => deleteImage(img.name));
+            setClickedImages([]); 
+          }
+          else if(clickedImage){  
+            deleteImage(clickedImage.name);
+          }
+          } } title="Delete">
+          <i className="material-icons">delete</i>
+        </button>
         )
       }
 

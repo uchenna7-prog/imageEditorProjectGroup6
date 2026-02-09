@@ -11,20 +11,20 @@ import { Link } from "react-router-dom";
 
 function GalleryPage() {
 
-  const { getAllImages, selectImage } = useContext(ImageContext);
+  const { getAllImages, selectImage, deleteImage, clickedImages , setClickedImages,clickedImage} = useContext(ImageContext);
 
   const images = getAllImages()
 
   const { viewType, showGridDisplaySizes, gridSize, changeGridSize } = useContext(GridDisplaySizesContext);
   const { isCollapsed, isMobile } = useSidebar();
-  
+
 
   return (
     <div className={styles.galleryPageContainer}>
       <Sidebar />
 
       <main className={`${styles.galleryMain} ${isCollapsed && !isMobile ? styles.mainExpanded : ""}`}>
-        <Header showSearchBar = {true} showDisplayLayoutBtns={true}/>
+        <Header showDeleteBtn={true} showDisplayLayoutBtns={true}/>
 
         {showGridDisplaySizes && (
 
@@ -70,7 +70,21 @@ function GalleryPage() {
             >
               {
                 viewType === "grid" && (
+                
                 <div className={styles.imageOverlay}>
+                  <input type="checkbox"
+                    style={{width:"15px",height:"15px"}}
+                    onClick={(e)=>{
+                      e.stopPropagation();
+                      selectImage(img)
+                      if(clickedImage){
+                        setClickedImages([...clickedImages, img])
+                      } 
+      
+                    }} 
+                    name={img.name}
+                  />
+
                   <i className="material-icons" style={{fontSize:"small"}}>visibility</i>
                 </div>
                 )
@@ -86,7 +100,12 @@ function GalleryPage() {
                     <button className={styles.actionBtn}>
                       <i className="material-icons">edit</i>
                     </button>
-                    <button className={styles.actionBtn}>
+                    <button className={styles.actionBtn} onClick={(e)=>{
+                      e.preventDefault();
+                      e.stopPropagation();
+                      deleteImage(img.name)
+                      window.alert(`${img.name} will be deleted.`)
+                    }}>
                       <i className="material-icons">delete</i>
                     </button>
                   </div>

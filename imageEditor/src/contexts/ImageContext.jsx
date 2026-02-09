@@ -16,7 +16,7 @@ const defaultFilters = {
   contrast: 100,
   grayscale: 0,
 };
-const images = [
+const allImages = [
   { src: img1, name: "Comp Sci Department", size: "1.2 MB",filters : defaultFilters },
   { src: img2, name: "Senate Building", size: "2.5 MB",filters : defaultFilters },
   { src: img3, name: "Tetfund 7 In One Building", size: "3.1 MB",filters : defaultFilters },
@@ -31,7 +31,9 @@ const images = [
 
 export function ImageProvider({ children }) {
   const [clickedImage, setClickedImage] = useState(null);
+  const [clickedImages, setClickedImages] = useState([]);
   const [editedImages, setEditedImages] = useState([]);
+  const [images, setImages ] = useState(allImages);
 
   useEffect(() => {
     const storedEdits = localStorage.getItem("editedImages");
@@ -54,14 +56,28 @@ export function ImageProvider({ children }) {
     setClickedImage(image);
   };
 
+  const deleteImage = (imageName) => {
+  setImages((prevImages) => prevImages.filter(image => image.name !== imageName));
+
+  if (clickedImage?.name === imageName) {
+    setClickedImage(null);
+  }
+
+  setEditedImages((prev) => prev.filter(img => img.name !== imageName));
+};
+
+
   return (
     <ImageContext.Provider
       value={{
         getAllImages,
         clickedImage,
+        clickedImages,
+        setClickedImages,
         selectImage,
         editedImages,
-        addEditedImage
+        addEditedImage,
+        deleteImage
       }}
     >
       {children}

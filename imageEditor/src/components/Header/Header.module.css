@@ -45,6 +45,8 @@
   transition: background-color 0.2s ease;
 }
 
+
+
 .headerButton:hover {
   background-color: var(--btn-hover-bg);
   border: 1px solid #ccc;
@@ -54,40 +56,6 @@
   color: var(--textColor);
 }
 
-
-.searchContainer {
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 8px 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: 1;
-  max-width: 500px;
-  transition: border-color 0.2s ease;
-}
-
-.searchContainer:focus-within {
-  border-color: black;
-}
-
-.searchContainer i {
-  color: #5f6368;
-}
-
-.searchInput {
-  border: none;
-  outline: none;
-  padding: 4px;
-  width: 100%;
-  font-size: 0.95rem;
-  background: transparent;
-}
-
-.searchInput::placeholder{
-  font-size: small;
-}
 
 .displayLayoutBtnsContainer {
   display: flex;

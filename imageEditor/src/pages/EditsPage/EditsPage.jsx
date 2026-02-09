@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 function EditsPage() {
 
-  const { editedImages, selectImage } = useContext(ImageContext);
+  const { editedImages, selectImage, deleteImage } = useContext(ImageContext);
 
   const { viewType, showGridDisplaySizes, gridSize, changeGridSize } = useContext(GridDisplaySizesContext);
   const { isCollapsed, isMobile } = useSidebar();
@@ -22,7 +22,7 @@ function EditsPage() {
       <Sidebar />
 
       <main className={`${styles.EditsMain} ${isCollapsed && !isMobile ? styles.mainExpanded : ""}`}>
-        <Header showSearchBar = {true} showDisplayLayoutBtns={true}/>
+        <Header showDeleteBtn={true} showDisplayLayoutBtns={true}/>
 
         {showGridDisplaySizes && (
 
@@ -86,7 +86,12 @@ function EditsPage() {
                     <button className={styles.actionBtn}>
                       <i className="material-icons">edit</i>
                     </button>
-                    <button className={styles.actionBtn}>
+                    <button className={styles.actionBtn} onClick={(e)=>{
+                      e.preventDefault()
+                      e.stopPropagation()
+                      deleteImage(img.name)
+                      window.alert(`${img.name} will be deleted.`)
+                    }}>
                       <i className="material-icons">delete</i>
                     </button>
                   </div>

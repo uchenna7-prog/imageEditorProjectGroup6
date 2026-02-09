@@ -67,7 +67,7 @@ function ImageViewerPage() {
       {!isFullscreen && <Sidebar />}
 
       <main ref={viewerRef} className={styles.imageViewerMain}>
-        <Header showSearchBar={false} showDisplayLayoutBtns={false} />
+        <Header showDeleteBtn={false} showDisplayLayoutBtns={false} />
 
         <div className={styles.buttonsContainer}>
           <Link to="/" className={styles.backBtn}>
