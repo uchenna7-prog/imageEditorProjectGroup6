@@ -5,62 +5,53 @@ import { useTheme } from "../../contexts/ThemeContext";
 import { ImageContext } from "../../contexts/ImageContext";
 import { useSidebar } from "../../contexts/SidebarContext";
 
-function Header({showDeleteBtn,showDisplayLayoutBtns}) {
+function Header({ showDeleteBtn, showDisplayLayoutBtns }) {
   const { changeViewType, viewType } = useContext(GridDisplaySizesContext);
   const { theme, toggleTheme } = useTheme();
   const { toggleSidebar, isMobile } = useSidebar();
-  const { deleteImage, clickedImage, clickedImages, setClickedImages } = useContext(ImageContext);
+  const { 
+    deleteImage, 
+    deleteMultipleImages, 
+    clickedImage, 
+    clickedImages, 
+    setClickedImages 
+  } = useContext(ImageContext);
 
   const handleDeleteSelected = () => {
-  if (clickedImages.length > 0) {
-    setImages(prevImages =>
-      prevImages.filter(img => !clickedImages.some(sel => sel.name === img.name))
-    );
-
-    setClickedImages([]);
-
-    if (clickedImage && clickedImages.some(sel => sel.name === clickedImage.name)) {
-      setClickedImage(null);
+    if (clickedImages.length > 0) {
+      const imageNames = clickedImages.map(img => img.name);
+      if (window.confirm(`Delete ${imageNames.length} image(s)?`)) {
+        deleteMultipleImages(imageNames);
+      }
+    } else if (clickedImage) {
+      if (window.confirm(`Delete ${clickedImage.name}?`)) {
+        deleteImage(clickedImage.name);
+      }
     }
-
-    setEditedImages(prev => prev.filter(img => !clickedImages.some(sel => sel.name === img.name)));
-  } else if (clickedImage) {
-    deleteImage(clickedImage.name);
-  }
-};
-
+  };
 
   return (
-    <header className={styles.galleryHeader} style={{
-  justifyContent: !isMobile && !showDeleteBtn
-    ? "flex-end"
-    : "space-between",
-}}
->
+    <header
+      className={styles.galleryHeader}
+      style={{
+        justifyContent: !isMobile && !showDeleteBtn ? "flex-end" : "space-between",
+      }}
+    >
       {isMobile && (
         <button className={styles.mobileMenuBtn} onClick={toggleSidebar}>
           <i className="material-icons">menu</i>
         </button>
       )}
 
-      {
-        showDeleteBtn && (
-        <button className={`${styles.headerButton} ${styles.deleteBtn}`} onClick={(e) =>{
-          e.stopPropagation(); 
-
-          if(clickedImages.length > 0){
-            clickedImages.forEach(img => deleteImage(img.name));
-            setClickedImages([]); 
-          }
-          else if(clickedImage){  
-            deleteImage(clickedImage.name);
-          }
-          } } title="Delete">
+      {showDeleteBtn && (
+        <button
+          className={`${styles.headerButton} ${styles.deleteBtn}`}
+          onClick={handleDeleteSelected}
+          title="Delete"
+        >
           <i className="material-icons">delete</i>
         </button>
-        )
-      }
-
+      )}
 
       <div className={styles.headerButtonsContainer}>
         <button className={styles.headerButton} onClick={toggleTheme}>
@@ -69,38 +60,26 @@ function Header({showDeleteBtn,showDisplayLayoutBtns}) {
           </i>
         </button>
 
-        {
-          showDisplayLayoutBtns && (
-            <div className={styles.displayLayoutBtnsContainer}>
-              <button
-                className={`${styles.headerButton} ${
-                  viewType === "list" ? styles.active : ""
-                }`}
-                onClick={() => changeViewType("list")}
-              >
-                <i className="material-icons">list</i>
-              </button>
+        {showDisplayLayoutBtns && (
+          <div className={styles.displayLayoutBtnsContainer}>
+            <button
+              className={`${styles.headerButton} ${viewType === "list" ? styles.active : ""}`}
+              onClick={() => changeViewType("list")}
+            >
+              <i className="material-icons">list</i>
+            </button>
 
-              <button
-                className={`${styles.headerButton} ${
-                  viewType === "grid" ? styles.active : ""
-                }`}
-                onClick={() => changeViewType("grid")}
-              >
-                <i className="material-icons">grid_view</i>
-                <i className="material-icons" style={{ fontSize: "18px" }}>
-                  keyboard_arrow_down
-                </i>
-              </button>
-
-            </div>
-
-
-          )
-        }
-       
-       
-
+            <button
+              className={`${styles.headerButton} ${viewType === "grid" ? styles.active : ""}`}
+              onClick={() => changeViewType("grid")}
+            >
+              <i className="material-icons">grid_view</i>
+              <i className="material-icons" style={{ fontSize: "18px" }}>
+                keyboard_arrow_down
+              </i>
+            </button>
+          </div>
+        )}
       </div>
     </header>
   );

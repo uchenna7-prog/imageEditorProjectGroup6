@@ -16,24 +16,24 @@ const defaultFilters = {
   contrast: 100,
   grayscale: 0,
 };
+
 const allImages = [
-  { src: img1, name: "Comp Sci Department", size: "1.2 MB",filters : defaultFilters },
-  { src: img2, name: "Senate Building", size: "2.5 MB",filters : defaultFilters },
-  { src: img3, name: "Tetfund 7 In One Building", size: "3.1 MB",filters : defaultFilters },
-  { src: img4, name: "Library Building", size: "2.0 MB",filters : defaultFilters },
-  { src: img5, name: "Ofirima Building", size: "1.8 MB",filters : defaultFilters },
-  { src: img6, name: "New Convocation Arena", size: "3.5 MB",filters : defaultFilters },
-  { src: img7, name: "Faculty of Law Building", size: "2.3 MB",filters : defaultFilters },
-  { src: img8, name: "Management Sci Building", size: "1.9 MB",filters : defaultFilters },
-  { src: img9, name: "Pharmacy Building", size: "2.7 MB",filters : defaultFilters },
-  
+  { src: img1, name: "Comp Sci Department", size: "1.2 MB", filters: defaultFilters },
+  { src: img2, name: "Senate Building", size: "2.5 MB", filters: defaultFilters },
+  { src: img3, name: "Tetfund 7 In One Building", size: "3.1 MB", filters: defaultFilters },
+  { src: img4, name: "Library Building", size: "2.0 MB", filters: defaultFilters },
+  { src: img5, name: "Ofirima Building", size: "1.8 MB", filters: defaultFilters },
+  { src: img6, name: "New Convocation Arena", size: "3.5 MB", filters: defaultFilters },
+  { src: img7, name: "Faculty of Law Building", size: "2.3 MB", filters: defaultFilters },
+  { src: img8, name: "Management Sci Building", size: "1.9 MB", filters: defaultFilters },
+  { src: img9, name: "Pharmacy Building", size: "2.7 MB", filters: defaultFilters },
 ];
 
 export function ImageProvider({ children }) {
   const [clickedImage, setClickedImage] = useState(null);
   const [clickedImages, setClickedImages] = useState([]);
   const [editedImages, setEditedImages] = useState([]);
-  const [images, setImages ] = useState(allImages);
+  const [images, setImages] = useState(allImages);
 
   useEffect(() => {
     const storedEdits = localStorage.getItem("editedImages");
@@ -56,16 +56,42 @@ export function ImageProvider({ children }) {
     setClickedImage(image);
   };
 
+  const toggleImageSelection = (image) => {
+    setClickedImages((prev) => {
+      const isSelected = prev.some(img => img.name === image.name);
+      if (isSelected) {
+        return prev.filter(img => img.name !== image.name);
+      } else {
+        return [...prev, image];
+      }
+    });
+  };
+
   const deleteImage = (imageName) => {
-  setImages((prevImages) => prevImages.filter(image => image.name !== imageName));
+    setImages((prevImages) => prevImages.filter(image => image.name !== imageName));
 
-  if (clickedImage?.name === imageName) {
-    setClickedImage(null);
-  }
+    if (clickedImage?.name === imageName) {
+      setClickedImage(null);
+    }
 
-  setEditedImages((prev) => prev.filter(img => img.name !== imageName));
-};
+    setClickedImages((prev) => prev.filter(img => img.name !== imageName));
+    setEditedImages((prev) => prev.filter(img => img.name !== imageName));
+  };
 
+  const deleteMultipleImages = (imageNames) => {
+    setImages((prevImages) => 
+      prevImages.filter(image => !imageNames.includes(image.name))
+    );
+
+    if (clickedImage && imageNames.includes(clickedImage.name)) {
+      setClickedImage(null);
+    }
+
+    setClickedImages([]);
+    setEditedImages((prev) => 
+      prev.filter(img => !imageNames.includes(img.name))
+    );
+  };
 
   return (
     <ImageContext.Provider
@@ -75,9 +101,14 @@ export function ImageProvider({ children }) {
         clickedImages,
         setClickedImages,
         selectImage,
+        toggleImageSelection,
         editedImages,
         addEditedImage,
-        deleteImage
+        deleteImage,
+        deleteMultipleImages,
+        images,
+        setImages,
+        setEditedImages
       }}
     >
       {children}

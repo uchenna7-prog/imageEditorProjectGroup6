@@ -1,33 +1,38 @@
 import styles from "./GalleryPage.module.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
-import { ImageContext} from "../../contexts/ImageContext";
-
+import { ImageContext } from "../../contexts/ImageContext";
 import { GridDisplaySizesContext } from "../../contexts/GridDisplaySizes";
 import { useContext } from "react";
 import { useSidebar } from "../../contexts/SidebarContext";
 import { Link } from "react-router-dom";
 
-
 function GalleryPage() {
+  const { 
+    getAllImages, 
+    selectImage, 
+    toggleImageSelection, 
+    clickedImages,
+    deleteImage
+  } = useContext(ImageContext);
 
-  const { getAllImages, selectImage, deleteImage, clickedImages , setClickedImages,clickedImage} = useContext(ImageContext);
-
-  const images = getAllImages()
+  const images = getAllImages();
 
   const { viewType, showGridDisplaySizes, gridSize, changeGridSize } = useContext(GridDisplaySizesContext);
   const { isCollapsed, isMobile } = useSidebar();
 
+  const isImageSelected = (img) => {
+    return clickedImages.some(selected => selected.name === img.name);
+  };
 
   return (
     <div className={styles.galleryPageContainer}>
       <Sidebar />
 
       <main className={`${styles.galleryMain} ${isCollapsed && !isMobile ? styles.mainExpanded : ""}`}>
-        <Header showDeleteBtn={true} showDisplayLayoutBtns={true}/>
+        <Header showDeleteBtn={true} showDisplayLayoutBtns={true} />
 
         {showGridDisplaySizes && (
-
           <div className={styles.gridDisplaySizesContainer}>
             <div className={styles.gridDisplaySizeTitle}>SIZES</div>
             <button
@@ -60,35 +65,29 @@ function GalleryPage() {
           }`}
         >
           {images.map((img, idx) => (
-            
-            <Link to="/image" style={{ textDecoration: "none", color: "inherit" }}
+            <Link
+              to="/image"
+              style={{ textDecoration: "none", color: "inherit" }}
               key={idx}
               className={`${styles.imageContainer} ${
                 viewType === "list" ? styles.listLayoutItem : styles.gridLayoutItem
               }`}
               onClick={() => selectImage(img)}
             >
-              {
-                viewType === "grid" && (
-                
+              {viewType === "grid" && (
                 <div className={styles.imageOverlay}>
-                  <input type="checkbox"
-                    style={{width:"15px",height:"15px"}}
-                    onClick={(e)=>{
+                  <input
+                    type="checkbox"
+                    style={{ width: "15px", height: "15px" }}
+                    checked={isImageSelected(img)}
+                    onChange={(e) => {
                       e.stopPropagation();
-                      selectImage(img)
-                      if(clickedImage){
-                        setClickedImages([...clickedImages, img])
-                      } 
-      
-                    }} 
-                    name={img.name}
+                      toggleImageSelection(img);
+                    }}
+                    onClick={(e) => e.stopPropagation()}
                   />
-
-                  <i className="material-icons" style={{fontSize:"small"}}>visibility</i>
                 </div>
-                )
-              }
+              )}
               {viewType === "list" ? (
                 <div className={styles.listItemContent}>
                   <img src={img.src} alt={img.name} />
@@ -100,19 +99,28 @@ function GalleryPage() {
                     <button className={styles.actionBtn}>
                       <i className="material-icons">edit</i>
                     </button>
-                    <button className={styles.actionBtn} onClick={(e)=>{
-                      e.preventDefault();
-                      e.stopPropagation();
-                      deleteImage(img.name)
-                      window.alert(`${img.name} will be deleted.`)
-                    }}>
+                    <button
+                      className={styles.actionBtn}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (window.confirm(`Delete ${img.name}?`)) {
+                          deleteImage(img.name);
+                        }
+                      }}
+                    >
                       <i className="material-icons">delete</i>
                     </button>
                   </div>
                 </div>
               ) : (
-                <img className={`${styles.image} ${
-                viewType === "list" ? styles.listLayoutImage : styles.gridLayoutImage}`} src={img.src} alt={img.name} />
+                <img
+                  className={`${styles.image} ${
+                    viewType === "list" ? styles.listLayoutImage : styles.gridLayoutImage
+                  }`}
+                  src={img.src}
+                  alt={img.name}
+                />
               )}
             </Link>
           ))}
