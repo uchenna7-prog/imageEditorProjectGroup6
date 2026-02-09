@@ -33,9 +33,7 @@ function Header({ showDeleteBtn, showDisplayLayoutBtns }) {
   return (
     <header
       className={styles.galleryHeader}
-      style={{
-        justifyContent: !isMobile && !showDeleteBtn ? "flex-end" : "space-between",
-      }}
+      style={{justifyContent: !isMobile? "flex-end" : "space-between"}}
     >
       {isMobile && (
         <button className={styles.mobileMenuBtn} onClick={toggleSidebar}>
@@ -43,17 +41,20 @@ function Header({ showDeleteBtn, showDisplayLayoutBtns }) {
         </button>
       )}
 
-      {showDeleteBtn && (
-        <button
-          className={`${styles.headerButton} ${styles.deleteBtn}`}
-          onClick={handleDeleteSelected}
-          title="Delete"
-        >
-          <i className="material-icons">delete</i>
-        </button>
-      )}
-
+   
       <div className={styles.headerButtonsContainer}>
+
+        {showDeleteBtn && (
+          <button
+            className={`${styles.headerButton} ${styles.deleteBtn}`}
+            onClick={handleDeleteSelected}
+            title="Delete"
+          >
+            <i className="material-icons">delete</i>
+          </button>
+        )}
+
+
         <button className={styles.headerButton} onClick={toggleTheme}>
           <i className="material-icons">
             {theme === "light-mode" ? "dark_mode" : "light_mode"}
