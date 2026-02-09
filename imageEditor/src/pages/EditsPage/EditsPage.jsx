@@ -102,9 +102,7 @@ function EditsPage() {
                     <div className={styles.fileSize}>{img.size}</div>
                   </div>
                   <div className={styles.fileActions}>
-                    <button className={styles.actionBtn}>
-                      <i className="material-icons">edit</i>
-                    </button>
+
                     <button className={styles.actionBtn} onClick={(e)=>{
                       e.preventDefault()
                       e.stopPropagation()
@@ -113,6 +111,17 @@ function EditsPage() {
                     }}>
                       <i className="material-icons">delete</i>
                     </button>
+
+                  <input
+                    type="checkbox"
+                    style={{ width: "15px", height: "15px" }}
+                    checked={isImageSelected(img)}
+                    onChange={(e) => {
+                      e.stopPropagation();
+                      toggleImageSelection(img);
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                  />
                   </div>
                 </div>
               ) : (
