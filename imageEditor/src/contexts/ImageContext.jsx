@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import img1 from "../assets/compSciDepartment.jpg";
 import img2 from "../assets/senateBuilding.jpg";
 import img3 from "../assets/tetfund7InOneBuilding.jpg";
@@ -115,3 +115,5 @@ export function ImageProvider({ children }) {
     </ImageContext.Provider>
   );
 }
+
+export const useImage = () => useContext(ImageContext)

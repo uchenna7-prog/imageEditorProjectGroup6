@@ -53,10 +53,6 @@ export function SidebarProvider({ children }) {
   );
 }
 
-export function useSidebar() {
-  const context = useContext(SidebarContext);
-  if (!context) {
-    throw new Error("useSidebar must be used within a SidebarProvider");
-  }
-  return context;
-}
+export const useSidebar = () =>  useContext(SidebarContext);
+  
+

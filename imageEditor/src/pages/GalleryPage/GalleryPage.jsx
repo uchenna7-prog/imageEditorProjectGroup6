@@ -1,9 +1,8 @@
 import styles from "./GalleryPage.module.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
-import { ImageContext } from "../../contexts/ImageContext";
-import { GridDisplaySizesContext } from "../../contexts/GridDisplaySizes";
-import { useContext } from "react";
+import { useImage } from "../../contexts/ImageContext";
+import { useImageDisplay } from "../../contexts/ImageDisplayContext";
 import { useSidebar } from "../../contexts/SidebarContext";
 import { Link } from "react-router-dom";
 
@@ -14,12 +13,21 @@ function GalleryPage() {
     toggleImageSelection, 
     clickedImages,
     deleteImage
-  } = useContext(ImageContext);
+  } = useImage();
 
   const images = getAllImages();
 
-  const { viewType, showGridDisplaySizes, gridSize, changeGridSize } = useContext(GridDisplaySizesContext);
-  const { isCollapsed, isMobile } = useSidebar();
+  const { 
+    viewType, 
+    showGridDisplaySizes, 
+    gridSize, 
+    changeGridSize 
+  } =  useImageDisplay();
+
+  const { 
+    isCollapsed, 
+    isMobile 
+  } = useSidebar();
 
   const isImageSelected = (img) => {
     return clickedImages.some(selected => selected.name === img.name);

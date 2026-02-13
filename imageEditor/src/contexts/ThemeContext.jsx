@@ -12,14 +12,14 @@ export function ThemeProvider({children}){
       }, [theme]);
     
     const toggleTheme = ()=>{
-        setTheme((prev)=>prev === "light-mode"? "dark-mode":"light-mode")
+        setTheme((prev) => prev === "light-mode"? "dark-mode":"light-mode")
 
     }
     return(
-        <ThemeContext.Provider value={{theme,toggleTheme}}>
+        <ThemeContext.Provider value={ { theme,toggleTheme} }>
             {children}
         </ThemeContext.Provider>
     )
 }
 
-export const useTheme = ()=> useContext(ThemeContext)
+export const useTheme = () => useContext(ThemeContext)

@@ -1,12 +1,12 @@
 import styles from "./Header.module.css";
 import { useContext } from "react";
-import { GridDisplaySizesContext } from "../../contexts/GridDisplaySizes";
+import { ImageDisplayContext } from "../../contexts/ImageDisplayContext";
 import { useTheme } from "../../contexts/ThemeContext";
 import { ImageContext } from "../../contexts/ImageContext";
 import { useSidebar } from "../../contexts/SidebarContext";
 
 function Header({ showDeleteBtn, showDisplayLayoutBtns }) {
-  const { changeViewType, viewType } = useContext(GridDisplaySizesContext);
+  const { changeViewType, viewType } = useContext(ImageDisplayContext);
   const { theme, toggleTheme } = useTheme();
   const { toggleSidebar, isMobile } = useSidebar();
   const { 

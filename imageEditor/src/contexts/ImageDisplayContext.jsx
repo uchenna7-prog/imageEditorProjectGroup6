@@ -1,8 +1,9 @@
+import { useContext } from "react";
 import { createContext, useState } from "react";
 
-export const GridDisplaySizesContext = createContext(null);
+export const ImageDisplayContext = createContext();
 
-export function GridDisplaySizesProvider({ children }) {
+export function ImageDisplayProvider({ children }) {
   const [showGridDisplaySizes, setShowGridDisplaySizes] = useState(false);
   const [viewType, setViewType] = useState("grid");
   const [gridSize, setGridSize] = useState("medium");
@@ -29,7 +30,7 @@ export function GridDisplaySizesProvider({ children }) {
   };
 
   return (
-    <GridDisplaySizesContext.Provider
+    <ImageDisplayContext.Provider
       value={{
         showGridDisplaySizes,
         toggleGridDisplaySizes,
@@ -40,6 +41,8 @@ export function GridDisplaySizesProvider({ children }) {
       }}
     >
       {children}
-    </GridDisplaySizesContext.Provider>
+    </ImageDisplayContext.Provider>
   );
 }
+
+export const useImageDisplay = () => useContext(ImageDisplayContext)

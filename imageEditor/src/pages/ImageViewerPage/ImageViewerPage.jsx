@@ -2,12 +2,15 @@ import { useState, useRef, useEffect } from "react";
 import styles from "./ImageViewerPage.module.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
-import { ImageContext } from "../../contexts/ImageContext";
-import { useContext } from "react";
+import { useImage } from "../../contexts/ImageContext";
 import { Link } from "react-router-dom";
 
 function ImageViewerPage() {
-  const { clickedImage,addEditedImage } = useContext(ImageContext);
+  const { 
+    clickedImage,
+    addEditedImage 
+  } = useImage();
+  
   const viewerRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
