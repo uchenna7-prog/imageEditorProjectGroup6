@@ -1,21 +1,20 @@
 import styles from "./Header.module.css";
-import { useContext } from "react";
-import { ImageDisplayContext } from "../../contexts/ImageDisplayContext";
+import { useImageDisplay } from "../../contexts/ImageDisplayContext";
 import { useTheme } from "../../contexts/ThemeContext";
-import { ImageContext } from "../../contexts/ImageContext";
+import { useImage } from "../../contexts/ImageContext";
 import { useSidebar } from "../../contexts/SidebarContext";
 
 function Header({ showDeleteBtn, showDisplayLayoutBtns }) {
-  const { changeViewType, viewType } = useContext(ImageDisplayContext);
+
+  const { viewType,changeViewType } = useImageDisplay();
   const { theme, toggleTheme } = useTheme();
-  const { toggleSidebar, isMobile } = useSidebar();
+  const { isMobile, toggleSidebar } = useSidebar();
   const { 
     deleteImage, 
     deleteMultipleImages, 
     clickedImage, 
-    clickedImages, 
-    setClickedImages 
-  } = useContext(ImageContext);
+    clickedImages
+  } = useImage();
 
   const handleDeleteSelected = () => {
     if (clickedImages.length > 0) {
@@ -33,15 +32,15 @@ function Header({ showDeleteBtn, showDisplayLayoutBtns }) {
   return (
     <header
       className={styles.galleryHeader}
-      style={{justifyContent: !isMobile? "flex-end" : "space-between"}}
+      style={{justifyContent: !isMobile ? "flex-end" : "space-between"}}
     >
+
       {isMobile && (
-        <button className={styles.mobileMenuBtn} onClick={toggleSidebar} title="menu">
+        <button className={styles.headerButton} onClick={toggleSidebar} title="menu">
           <i className="material-icons">menu</i>
         </button>
       )}
 
-   
       <div className={styles.headerButtonsContainer}>
 
         {showDeleteBtn && (
@@ -53,7 +52,6 @@ function Header({ showDeleteBtn, showDisplayLayoutBtns }) {
             <i className="material-icons">delete</i>
           </button>
         )}
-
 
         <button className={styles.headerButton} onClick={toggleTheme} title="Theme">
           <i className="material-icons">

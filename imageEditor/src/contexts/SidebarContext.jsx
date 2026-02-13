@@ -3,6 +3,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 const SidebarContext = createContext();
 
 export function SidebarProvider({ children }) {
+
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -32,20 +33,13 @@ export function SidebarProvider({ children }) {
     }
   };
 
-  const closeSidebar = () => {
-    if (isMobile) {
-      setIsSidebarOpen(false);
-    }
-  };
-
   return (
     <SidebarContext.Provider
       value={{
         isCollapsed,
         isMobile,
         isSidebarOpen,
-        toggleSidebar,
-        closeSidebar,
+        toggleSidebar
       }}
     >
       {children}

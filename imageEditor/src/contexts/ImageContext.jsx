@@ -30,10 +30,15 @@ const allImages = [
 ];
 
 export function ImageProvider({ children }) {
+
   const [clickedImage, setClickedImage] = useState(null);
   const [clickedImages, setClickedImages] = useState([]);
-  const [editedImages, setEditedImages] = useState([]);
   const [images, setImages] = useState(allImages);
+  const [editedImages, setEditedImages] = useState([]);
+  
+  useEffect(() => {
+    localStorage.setItem("editedImages", JSON.stringify(editedImages));
+  }, [editedImages]);
 
   useEffect(() => {
     const storedEdits = localStorage.getItem("editedImages");
@@ -41,10 +46,6 @@ export function ImageProvider({ children }) {
       setEditedImages(JSON.parse(storedEdits));
     }
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("editedImages", JSON.stringify(editedImages));
-  }, [editedImages]);
 
   const addEditedImage = (image) => {
     setEditedImages((prev) => [image, ...prev]);
@@ -57,17 +58,22 @@ export function ImageProvider({ children }) {
   };
 
   const toggleImageSelection = (image) => {
+
     setClickedImages((prev) => {
+      
       const isSelected = prev.some(img => img.name === image.name);
+
       if (isSelected) {
         return prev.filter(img => img.name !== image.name);
-      } else {
+      } 
+      else {
         return [...prev, image];
       }
     });
   };
 
   const deleteImage = (imageName) => {
+    
     setImages((prevImages) => prevImages.filter(image => image.name !== imageName));
 
     if (clickedImage?.name === imageName) {

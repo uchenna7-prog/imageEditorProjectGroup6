@@ -36,9 +36,11 @@ function EditsPage() {
 
   return (
     <div className={styles.EditsPageContainer}>
-      <Sidebar />
+
+      <Sidebar/>
 
       <main className={`${styles.EditsMain} ${isCollapsed && !isMobile ? styles.mainExpanded : ""}`}>
+        
         <Header showDeleteBtn={clickedImages.length > 0} showDisplayLayoutBtns={true}/>
 
         {showGridDisplaySizes && (

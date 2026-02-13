@@ -91,7 +91,7 @@
   transform: scale(1.015);
 }
 
-/* EDIT PANEL */
+
 .editPanel {
   display: flex;
   flex-direction: column;
@@ -130,7 +130,7 @@
   width: 100%;
 }
 
-/* FULLSCREEN */
+
 :fullscreen .imageViewerPage {
   background: var(--bg);
   color: var(--textColor);
@@ -161,7 +161,6 @@
   color: black;
 }
 
-
 :fullscreen .buttonsContainer .backBtn i {
   background: #e8f0fe;
   color: black;
@@ -171,7 +170,7 @@
   color: var(--textColor);
 }
 
-/* MOBILE */
+
 @media (max-width: 768px) {
   .buttonsContainer {
     justify-content: center;

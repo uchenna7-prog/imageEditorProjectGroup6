@@ -3,14 +3,15 @@ import { useSidebar } from "../../contexts/SidebarContext";
 import { Link } from "react-router-dom";
 
 function Sidebar() {
-  const { isCollapsed, isMobile, isSidebarOpen, toggleSidebar, closeSidebar } = useSidebar();
+  const { 
+    isCollapsed, 
+    isMobile, 
+    isSidebarOpen, 
+    toggleSidebar
+  } = useSidebar();
 
   return (
     <>
-      {isMobile && isSidebarOpen && (
-        <div className={styles.overlay} onClick={closeSidebar}></div>
-      )}
-
       <aside
         className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ""} ${
           isMobile ? (isSidebarOpen ? styles.mobileOpen : styles.mobileClosed) : ""
@@ -29,7 +30,7 @@ function Sidebar() {
         </header>
 
         <nav className={styles.navLinksContainer}>
-          <Link to="/" className={styles.navBtn} onClick={()=> isMobile && toggleSidebar()}>
+          <Link to="/" className={styles.navBtn} onClick={() => isMobile && toggleSidebar()}>
             <i className="material-icons">photo_library</i>
             {!isCollapsed && <span>Gallery</span>}
           </Link>

@@ -6,11 +6,12 @@ import { useImage } from "../../contexts/ImageContext";
 import { Link } from "react-router-dom";
 
 function ImageViewerPage() {
+
   const { 
     clickedImage,
     addEditedImage 
   } = useImage();
-  
+
   const viewerRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -40,7 +41,6 @@ function ImageViewerPage() {
   }, []);
 
   const toggleEdit = () => setIsEditing(!isEditing);
- 
 
   const resetFilters = () => {
     setBrightness(100);
@@ -51,8 +51,9 @@ function ImageViewerPage() {
   const saveImage = () => {
 
   const editedImage = {
-    name: clickedImage?.name + "(Edited)" || "Edited Image",
+    name: clickedImage?.name + " (Edited) " || "Edited Image",
     src: clickedImage?.src || "",
+    size: clickedImage?.size,
     filters: {
       brightness,
       contrast,
@@ -67,18 +68,22 @@ function ImageViewerPage() {
  
   return (
     <div className={styles.imageViewerPage}>
+      
       {!isFullscreen && <Sidebar />}
 
       <main ref={viewerRef} className={styles.imageViewerMain}>
+
         <Header showDeleteBtn={false} showDisplayLayoutBtns={false} />
 
         <div className={styles.buttonsContainer}>
+
           <Link to="/" className={styles.backBtn}>
             <i className="material-icons">arrow_back</i>
             Back
           </Link>
 
           <div className={styles.imageActionsContainer}>
+
             <button className={styles.editBtn} onClick={toggleEdit}>
               <i className="material-icons">edit</i>
               {isEditing ? "Editing" : "Edit"}
@@ -98,7 +103,9 @@ function ImageViewerPage() {
               <i className="material-icons">download</i>
               Save
             </button>
+
           </div>
+
         </div>
 
         <div className={styles.imageContainer}>
@@ -117,6 +124,7 @@ function ImageViewerPage() {
 
         {isEditing && (
           <div className={styles.editPanel}>
+
             <h2 className={styles.editPanelTitle}>FILTERS</h2>
 
             <div className={styles.filterControl}>
