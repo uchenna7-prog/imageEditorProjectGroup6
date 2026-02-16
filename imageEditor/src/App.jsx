@@ -1,7 +1,6 @@
 import GalleryPage from './pages/GalleryPage/GalleryPage';
 import EditsPage from './pages/EditsPage/EditsPage';
 import ImageViewerPage from './pages/ImageViewerPage/ImageViewerPage';
-import './App.css';
 import { Route,Routes } from 'react-router-dom';
 
 function App() {
